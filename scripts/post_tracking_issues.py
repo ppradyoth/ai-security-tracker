@@ -27,8 +27,6 @@ def post_issue_to_github(title, body, labels):
             title,
             "--body",
             body,
-            "--label",
-            ",".join(labels),
         ]
 
         result = subprocess.run(cmd, capture_output=True, text=True)
