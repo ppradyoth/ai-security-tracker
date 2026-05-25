@@ -3,11 +3,12 @@
 Generate comprehensive GitHub issue reports (Big Model Radar format).
 
 Creates richly detailed weekly security tracking reports with:
-- Executive summary with trends
-- Detailed repository table
-- Severity breakdown
-- Category analysis
-- Top issues by engagement
+- Executive summary with trend analysis
+- Detailed repository breakdown with severity metrics
+- Security category analysis
+- Top issues by engagement with context
+- Week-over-week trend analysis
+- Key findings and recommendations
 """
 
 import json
@@ -15,39 +16,44 @@ import os
 import sys
 from datetime import datetime, timedelta
 import glob
+from collections import defaultdict
 
-
-def detect_severity(issue):
-    """Detect issue severity from labels and signals."""
-    labels = issue.get("labels", [])
-    signals = issue.get("signals", {})
-    title = issue.get("title", "").lower()
+def detect_severity(item):
+    """Detect item severity from labels and signals."""
+    labels = item.get("labels", [])
+    title = item.get("title", "").lower()
+    category = item.get("security_category", "").lower()
 
     # Check for critical signals
-    if signals.get("has_vulnerability_label"):
+    if any("critical" in label.lower() for label in labels):
         return "critical"
     if any("cve" in label.lower() for label in labels):
         return "critical"
-    if any("critical" in label.lower() for label in labels):
+    if category == "cve":
+        return "critical"
+    if any(x in title for x in ["rce", "remote code execution", "critical vulnerability"]):
         return "critical"
 
     # Check for high severity
+    if any("high" in label.lower() for label in labels):
+        return "high"
     if any("vulnerability" in label.lower() for label in labels):
         return "high"
     if any("exploit" in label.lower() for label in labels):
         return "high"
-    if "vulnerability" in title or "exploit" in title:
+    if any(x in category for x in ["injection", "credential", "auth"]):
         return "high"
 
     # Check for medium
     if any("medium" in label.lower() for label in labels):
         return "medium"
+    if any(x in category for x in ["dos", "dependency"]):
+        return "medium"
 
     return "low"
 
-
-def get_severity_emoji(severity):
-    """Get emoji for severity level."""
+def get_emoji(severity):
+    """Get emoji for severity."""
     return {
         "critical": "🔴",
         "high": "🟠",
@@ -55,217 +61,350 @@ def get_severity_emoji(severity):
         "low": "🟢"
     }.get(severity, "⚪")
 
+def categorize_repos(repos_data):
+    """Group repos by category."""
+    categorized = defaultdict(list)
+    for repo_name, data in repos_data.items():
+        category = data.get("category", "other")
+        categorized[category].append((repo_name, data))
+    return categorized
 
-def create_issue_body(weekly_data, previous_week_data=None):
-    """Create comprehensive markdown body for GitHub issue."""
-    week = weekly_data.get("week", "Unknown")
-    start_date = weekly_data.get("start_date", "")
-    end_date = weekly_data.get("end_date", "")
-    repos_tracked = weekly_data.get("repos_tracked", 0)
+def calculate_trends(current_week, previous_week):
+    """Calculate trend metrics."""
+    curr_total = sum(r.get("issue_count", 0) for r in current_week.values())
+    prev_total = sum(r.get("issue_count", 0) for r in previous_week.values()) if previous_week else 0
 
-    # Calculate total issues
-    repos = weekly_data.get("repositories", {})
+    if prev_total == 0:
+        return {"change": curr_total, "percent": 100 if curr_total > 0 else 0, "direction": "→"}
+
+    change = curr_total - prev_total
+    percent = abs(round(100 * change / prev_total, 1))
+
+    if change > 0:
+        return {"change": change, "percent": percent, "direction": "↑"}
+    elif change < 0:
+        return {"change": abs(change), "percent": percent, "direction": "↓"}
+    else:
+        return {"change": 0, "percent": 0, "direction": "→"}
+
+def create_detailed_report(week_data, previous_week_data=None):
+    """Create comprehensive markdown report."""
+    week = week_data.get("week", "Unknown")
+    start_date = week_data.get("start_date", "")
+    end_date = week_data.get("end_date", "")
+    repos = week_data.get("repositories", {})
+
+    # Calculate metrics
     total_issues = sum(r.get("issue_count", 0) for r in repos.values())
-    open_issues = sum(r.get("open_count", 0) for r in repos.values())
-    closed_issues = sum(r.get("closed_count", 0) for r in repos.values())
+    total_prs = sum(r.get("pr_count", 0) for r in repos.values())
+    open_count = sum(r.get("open_count", 0) for r in repos.values())
+    closed_count = sum(r.get("closed_count", 0) for r in repos.values())
 
-    # Calculate severity distribution
+    # Severity breakdown across all issues
     severity_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0}
-    all_top_issues = []
+    category_counts = defaultdict(int)
+    all_items = []
 
     for repo_name, repo_data in repos.items():
-        for issue in repo_data.get("top_issues", []):
-            severity = detect_severity(issue)
+        for item in repo_data.get("top_issues", []):
+            severity = detect_severity(item)
             severity_counts[severity] += 1
-            all_top_issues.append({
+            category = item.get("security_category", "other")
+            category_counts[category] += 1
+            all_items.append({
                 "repo": repo_name,
-                "title": issue.get("title", ""),
-                "number": issue.get("number", ""),
-                "url": issue.get("url", ""),
+                "title": item.get("title", ""),
+                "number": item.get("number", ""),
+                "url": item.get("url", ""),
                 "severity": severity,
-                "comments": issue.get("comments", 0)
+                "category": category,
+                "type": item.get("type", "Issue"),
+                "comments": item.get("comments", 0),
+                "reactions": item.get("reactions", 0),
+                "state": item.get("state", "open")
             })
+
+    # Calculate trends
+    trends = calculate_trends(repos, previous_week_data.get("repositories", {}) if previous_week_data else {})
 
     lines = []
 
-    # Header
-    lines.append(f"# [Tracking] {week} — AI Security Ecosystem Report")
+    # ========== HEADER ==========
+    lines.append(f"# 🔒 {week} — AI Security Ecosystem Report")
+    lines.append("")
+    lines.append(f"**Full monitoring of security issues across 22+ AI/ML repositories**")
     lines.append("")
 
-    # Executive Summary
-    lines.append("## Executive Summary")
-    lines.append(f"- **Period**: {start_date.split('T')[0]} to {end_date.split('T')[0]} (7 days)")
-    lines.append(f"- **Repos Tracked**: {repos_tracked}")
-    lines.append(f"- **Total Issues**: {total_issues}")
-    lines.append(f"- **Open Issues**: {open_issues}")
-    lines.append(f"- **Closed Issues**: {closed_issues}")
+    # ========== EXECUTIVE SUMMARY ==========
+    lines.append("## 📊 Executive Summary")
+    lines.append("")
+    lines.append(f"**Period:** {start_date.split('T')[0]} → {end_date.split('T')[0]} (7 days)")
+    lines.append("")
+    lines.append("### Key Metrics")
+    lines.append("")
+    lines.append(f"| Metric | Count | Status |")
+    lines.append("|--------|-------|--------|")
+    lines.append(f"| **Repos Tracked** | {len(repos)} | ✅ Active |")
+    lines.append(f"| **Security Issues** | {total_issues} | {trends['direction']} {'+' if trends['change'] >= 0 else ''}{trends['change']} ({trends['percent']}%) |")
+    lines.append(f"| **Security PRs** | {total_prs} | 🔧 Fixes |")
+    lines.append(f"| **Open Items** | {open_count} | ⏳ Pending |")
+    lines.append(f"| **Closed Items** | {closed_count} | ✓ Resolved |")
+    lines.append("")
 
-    # Trends vs previous week
+    # ========== SEVERITY DISTRIBUTION ==========
+    lines.append("## 🎯 Severity Distribution")
+    lines.append("")
+    lines.append("This week's security issues breakdown by severity level:")
+    lines.append("")
+
+    total_issues_all = sum(severity_counts.values())
+    for severity in ["critical", "high", "medium", "low"]:
+        count = severity_counts[severity]
+        pct = round(100 * count / total_issues_all, 1) if total_issues_all > 0 else 0
+        bar_length = max(1, round(count / 2)) if count > 0 else 0
+        bar = "█" * bar_length
+        lines.append(f"- {get_emoji(severity)} **{severity.upper()}** ({count} issues, {pct}%) {bar}")
+
+    lines.append("")
+
+    # ========== SECURITY CATEGORY BREAKDOWN ==========
+    lines.append("## 🏷️ Security Category Analysis")
+    lines.append("")
+    lines.append("Issues and PRs grouped by security type:")
+    lines.append("")
+
+    for category in sorted(category_counts.keys(), key=lambda x: category_counts[x], reverse=True):
+        count = category_counts[category]
+        pct = round(100 * count / total_issues_all, 1) if total_issues_all > 0 else 0
+        emoji = {
+            "cve": "🚨",
+            "vulnerability": "⚠️",
+            "credential": "🔑",
+            "injection": "💉",
+            "auth": "🔐",
+            "dos": "💥",
+            "dependency": "📦",
+            "encryption": "🔒",
+            "other": "❓"
+        }.get(category, "❓")
+        lines.append(f"{emoji} **{category.upper()}** — {count} issues ({pct}%)")
+
+    lines.append("")
+
+    # ========== REPOSITORY BREAKDOWN ==========
+    lines.append("## 📦 Security Issues by Repository")
+    lines.append("")
+
+    # Group repos by category
+    categorized = categorize_repos(repos)
+
+    for repo_category in sorted(categorized.keys()):
+        category_repos = categorized[repo_category]
+        category_total = sum(r[1].get("issue_count", 0) for r in category_repos)
+
+        if category_total == 0:
+            continue
+
+        lines.append(f"### {repo_category.upper()} ({len(category_repos)} repos)")
+        lines.append("")
+        lines.append("| Repository | Issues | PRs | Critical | High | State | Top Issue |")
+        lines.append("|---|---:|---:|---:|---:|---|---|")
+
+        for repo_name, data in sorted(category_repos, key=lambda x: x[1].get("issue_count", 0), reverse=True):
+            owner = data.get("owner", "")
+            repo = data.get("repo", "")
+            issue_count = data.get("issue_count", 0)
+            pr_count = data.get("pr_count", 0)
+            open_count = data.get("open_count", 0)
+
+            # Count severity for this repo
+            critical_count = 0
+            high_count = 0
+            for item in data.get("top_issues", []):
+                severity = detect_severity(item)
+                if severity == "critical":
+                    critical_count += 1
+                elif severity == "high":
+                    high_count += 1
+
+            # Top issue
+            top_item = data.get("top_issues", [{}])[0] if data.get("top_issues") else None
+            if top_item:
+                issue_title = top_item.get("title", "No issues")
+                if len(issue_title) > 40:
+                    issue_title = issue_title[:37] + "..."
+                issue_link = top_item.get("url", "#")
+                issue_num = top_item.get("number", "")
+                top_issue_cell = f"[#{issue_num}]({issue_link})"
+            else:
+                top_issue_cell = "—"
+
+            state_emoji = "🟢" if open_count == 0 else "🟡" if open_count < 3 else "🔴"
+            repo_link = f"https://github.com/{owner}/{repo}"
+
+            lines.append(
+                f"| [{repo_name}]({repo_link}) | {issue_count} | {pr_count} | {critical_count} | {high_count} | "
+                f"{state_emoji} ({open_count} open) | {top_issue_cell} |"
+            )
+
+        lines.append("")
+
+    # ========== TOP ISSUES BY ENGAGEMENT ==========
+    if all_items:
+        lines.append("## 💬 Top Issues by Engagement")
+        lines.append("")
+
+        top_engaged = sorted(all_items, key=lambda x: x["comments"] + x["reactions"], reverse=True)[:10]
+
+        for idx, item in enumerate(top_engaged, 1):
+            severity_emoji = get_emoji(item["severity"])
+            type_badge = "📄 Issue" if item["type"] == "Issue" else "🔧 PR"
+            state_badge = "🟢 Open" if item["state"] == "open" else "✓ Closed"
+
+            lines.append(f"**{idx}. {severity_emoji} [{item['repo']} #{item['number']}]({item['url']})**")
+            lines.append(f"   - **Title:** {item['title']}")
+            lines.append(f"   - **Type:** {type_badge} | **State:** {state_badge} | **Category:** {item['category'].upper()}")
+            lines.append(f"   - **Engagement:** 💬 {item['comments']} comments | ❤️ {item['reactions']} reactions")
+            lines.append("")
+
+    # ========== NEWLY OPENED THIS WEEK ==========
+    lines.append("## 🆕 Newly Opened This Week")
+    lines.append("")
+
+    new_issues = [i for i in all_items if i["state"] == "open"]
+    if new_issues:
+        lines.append(f"**{len(new_issues)} new security issues/PRs discovered:**")
+        lines.append("")
+
+        for item in new_issues[:5]:  # Show top 5
+            lines.append(f"- {get_emoji(item['severity'])} **[{item['repo']}]** {item['title']}")
+
+        if len(new_issues) > 5:
+            lines.append(f"- ... and {len(new_issues) - 5} more")
+
+        lines.append("")
+
+    # ========== RECENTLY RESOLVED ==========
+    resolved_issues = [i for i in all_items if i["state"] == "closed"]
+    if resolved_issues:
+        lines.append("## ✅ Recently Resolved")
+        lines.append("")
+        lines.append(f"**{len(resolved_issues)} security issues/PRs were closed this week.**")
+        lines.append("")
+
+    # ========== TREND ANALYSIS ==========
+    lines.append("## 📈 Trend Analysis")
+    lines.append("")
+
     if previous_week_data:
-        prev_total = sum(r.get("issue_count", 0) for r in previous_week_data.get("repositories", {}).values())
-        trend = total_issues - prev_total
-        if trend > 0:
-            lines.append(f"- **Trend**: ↑ +{trend} issues since last week")
-        elif trend < 0:
-            lines.append(f"- **Trend**: ↓ {trend} issues since last week")
-        else:
-            lines.append(f"- **Trend**: → No change since last week")
+        prev_repos = previous_week_data.get("repositories", {})
+        prev_total = sum(r.get("issue_count", 0) for r in prev_repos.values())
+        prev_prs = sum(r.get("pr_count", 0) for r in prev_repos.values())
+
+        issue_trend = "↑ Increased" if total_issues > prev_total else "↓ Decreased" if total_issues < prev_total else "→ Stable"
+        pr_trend = "↑ More fixes" if total_prs > prev_prs else "↓ Fewer fixes" if total_prs < prev_prs else "→ Same"
+
+        lines.append(f"- **Issue Velocity:** {issue_trend} ({total_issues} vs {prev_total} last week)")
+        lines.append(f"- **Fix Velocity:** {pr_trend} ({total_prs} vs {prev_prs} PRs last week)")
+    else:
+        lines.append(f"- **Issue Discovery:** {total_issues} security issues detected")
+        lines.append(f"- **Fix Rate:** {total_prs} PRs to address them")
 
     lines.append("")
 
-    # Severity Distribution
-    lines.append("## Severity Distribution")
-    lines.append(f"- {get_severity_emoji('critical')} **Critical**: {severity_counts['critical']} issues")
-    lines.append(f"- {get_severity_emoji('high')} **High**: {severity_counts['high']} issues")
-    lines.append(f"- {get_severity_emoji('medium')} **Medium**: {severity_counts['medium']} issues")
-    lines.append(f"- {get_severity_emoji('low')} **Low**: {severity_counts['low']} issues")
+    # ========== KEY FINDINGS ==========
+    lines.append("## 🔍 Key Findings")
     lines.append("")
 
-    # Main Repository Table
-    lines.append("## Security Issues by Repository")
-    lines.append("")
-    lines.append("| Repository | Category | Total | Open | Closed | Critical | High | Top Issue |")
-    lines.append("|---|---|:---:|:---:|:---:|:---:|:---:|---|")
+    # Auto-generated findings
+    findings = []
 
-    for repo_name, data in sorted(
-        repos.items(),
-        key=lambda x: x[1].get("issue_count", 0),
-        reverse=True
-    ):
-        owner = data.get("owner", "")
-        repo = data.get("repo", "")
-        repo_link = f"https://github.com/{owner}/{repo}"
+    if severity_counts["critical"] > 0:
+        findings.append(f"⚠️ **{severity_counts['critical']} CRITICAL issue(s)** require immediate attention")
 
-        issue_count = data.get("issue_count", 0)
-        open_count = data.get("open_count", 0)
-        closed_count = data.get("closed_count", 0)
+    if total_issues > (previous_week_data.get("repositories", {}) if previous_week_data else {}):
+        findings.append(f"📈 Security issue discovery rate is trending upward")
 
-        # Count severities for this repo
-        critical_count = 0
-        high_count = 0
-        for issue in data.get("top_issues", []):
-            severity = detect_severity(issue)
-            if severity == "critical":
-                critical_count += 1
-            elif severity == "high":
-                high_count += 1
+    most_active_repo = max(repos.items(), key=lambda x: x[1].get("issue_count", 0), default=None)
+    if most_active_repo:
+        findings.append(f"🔥 **{most_active_repo[0]}** is the most active repo ({most_active_repo[1].get('issue_count', 0)} issues)")
 
-        top_issue = data.get("top_issues", [{}])[0] if data.get("top_issues") else None
-        issue_title = top_issue.get("title", "No issues") if top_issue else "No issues"
-        issue_link = top_issue.get("url", "#") if top_issue else "#"
-        issue_num = top_issue.get("number", "") if top_issue else ""
+    if category_counts:
+        top_category = max(category_counts.items(), key=lambda x: x[1])[0]
+        findings.append(f"🏷️ **{top_category.upper()}** is the most common security issue type")
 
-        # Truncate title
-        if len(issue_title) > 50:
-            issue_title = issue_title[:47] + "..."
+    if closed_count > open_count:
+        findings.append(f"✅ Strong resolution momentum: more issues closed ({closed_count}) than open ({open_count})")
+    elif open_count > closed_count:
+        findings.append(f"⏳ Backlog building: {open_count} open items awaiting resolution")
 
-        if issue_num:
-            top_issue_cell = f"[#{issue_num}]({issue_link}) {issue_title}"
-        else:
-            top_issue_cell = "No issues"
-
-        repo_cell = f"[{repo_name}]({repo_link})"
-
-        lines.append(
-            f"| {repo_cell} | Security | {issue_count} | {open_count} | {closed_count} | "
-            f"{critical_count} | {high_count} | {top_issue_cell} |"
-        )
+    if findings:
+        for finding in findings:
+            lines.append(f"- {finding}")
+    else:
+        lines.append("- No critical findings this week")
 
     lines.append("")
 
-    # Top Issues by Engagement
-    if all_top_issues:
-        lines.append("## Top Issues by Engagement")
-        lines.append("")
+    # ========== RECOMMENDATIONS ==========
+    lines.append("## 💡 Recommendations")
+    lines.append("")
 
-        top_engaged = sorted(all_top_issues, key=lambda x: x["comments"], reverse=True)[:5]
-        for idx, issue in enumerate(top_engaged, 1):
-            emoji = get_severity_emoji(issue["severity"])
-            lines.append(f"{idx}. {emoji} **[{issue['repo']} #{issue['number']}]({issue['url']})** — {issue['title']}")
-            lines.append(f"   - Comments: {issue['comments']}")
+    if severity_counts["critical"] > 0:
+        lines.append("1. **Prioritize Critical Issues** — Allocate resources to resolve critical vulnerabilities immediately")
 
-        lines.append("")
+    if open_count > 5:
+        lines.append("2. **Reduce Backlog** — Many open issues need attention; consider triaging by severity")
 
-    # Category Summary
-    categories = {}
-    for repo_name, data in repos.items():
-        # Infer category from repo name (this is a simple heuristic)
-        if any(x in repo_name.lower() for x in ["tensor", "pytorch", "jax", "hugging", "llama", "ollama"]):
-            cat = "ML Frameworks"
-        elif any(x in repo_name.lower() for x in ["claude", "copilot", "gemini", "kimi"]):
-            cat = "AI CLI Tools"
-        elif any(x in repo_name.lower() for x in ["bandit", "safety", "snyk", "trufflehog"]):
-            cat = "Security Tools"
-        else:
-            cat = "Other"
+    if closed_count > 0:
+        lines.append("3. **Maintain Momentum** — Continue closing issues at current pace")
 
-        if cat not in categories:
-            categories[cat] = {"repos": 0, "issues": 0}
-        categories[cat]["repos"] += 1
-        categories[cat]["issues"] += data.get("issue_count", 0)
+    lines.append("4. **Monitor Trends** — Track issue velocity to catch spikes early")
+    lines.append("")
 
-    if categories:
-        lines.append("## By Category")
-        lines.append("")
-        for category, stats in sorted(categories.items(), key=lambda x: x[1]["issues"], reverse=True):
-            lines.append(f"- **{category}**: {stats['repos']} repos, {stats['issues']} issues")
-        lines.append("")
-
-    # Footer
+    # ========== FOOTER ==========
     lines.append("---")
     lines.append("")
-    lines.append(f"*Generated by [AI Security Tracker](https://github.com/ppradyoth/ai-security-tracker)*")
-    lines.append(f"*Last updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}*")
+    lines.append(f"*Generated by [AI Security Tracker](https://github.com/ppradyoth/ai-security-tracker) at {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}*")
+    lines.append(f"*Using TinyLlama-based security classification for comprehensive coverage*")
 
     return "\n".join(lines)
 
-
 def main():
-    """Main entry point."""
-    # Find all issue report files
-    issue_files = sorted(glob.glob("data/week-*.json"))
+    """Generate reports from all weekly snapshots."""
+    week_files = sorted(glob.glob("data/week-*.json"))
 
-    if not issue_files:
-        sys.stderr.write("No week data files found.\n")
+    if not week_files:
+        sys.stderr.write("No week data files found in data/\n")
         sys.exit(1)
 
-    sys.stderr.write(f"Found {len(issue_files)} week snapshots\n")
+    sys.stderr.write(f"Found {len(week_files)} weekly snapshots\n")
     sys.stderr.write(f"Generating comprehensive reports...\n\n")
 
-    # Create issues directory
     os.makedirs("issues", exist_ok=True)
 
-    # Process each week
     previous_data = None
-    for idx, weekly_file in enumerate(issue_files):
+    for weekly_file in week_files:
         try:
             with open(weekly_file, "r") as f:
-                weekly_data = json.load(f)
+                week_data = json.load(f)
         except Exception as e:
-            sys.stderr.write(f"Error reading {weekly_file}: {e}\n")
+            sys.stderr.write(f"⚠️  Error reading {weekly_file}: {e}\n")
             continue
 
-        week = weekly_data.get("week", "unknown")
-        sys.stderr.write(f"Processing week {week}... ")
+        week = week_data.get("week", "unknown")
+        sys.stderr.write(f"Generating {week}... ")
 
-        # Create markdown report
-        body = create_issue_body(weekly_data, previous_data)
+        body = create_detailed_report(week_data, previous_data)
 
-        # Save to file
-        issue_title = f"[Tracking] {week} — AI Security Ecosystem Report"
-        issue_file = f"issues/{week}-report.md"
-
-        with open(issue_file, "w") as f:
-            f.write(f"# {issue_title}\n\n")
+        report_file = f"issues/{week}-security-report.md"
+        with open(report_file, "w") as f:
             f.write(body)
 
-        sys.stderr.write(f"✅ created {issue_file}\n")
+        sys.stderr.write(f"✅ saved to {report_file}\n")
+        previous_data = week_data
 
-        previous_data = weekly_data
-
-    sys.stderr.write(f"\n✅ All reports generated\n")
-    sys.stderr.write(f"Files saved in issues/ directory\n")
-
+    sys.stderr.write(f"\n✅ All {len(week_files)} reports generated in issues/ directory\n")
 
 if __name__ == "__main__":
     main()

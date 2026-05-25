@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 """
-Generate optimized dashboard data from security collection results.
-
-Transforms raw security issues into dashboard-friendly JSON with:
-- Summary statistics
-- All 22 tracked repositories
-- Separated issues and pull requests
-- Top issues by engagement
-- Label distribution
+Generate dashboard data from classified items.
+Only includes items marked as security_related=true.
 """
 
 import json
@@ -16,70 +10,72 @@ import os
 from datetime import datetime
 from collections import defaultdict
 
-
 def load_manifest():
-    """Load manifest.json to get all tracked repos."""
-    manifest_path = os.path.join(os.path.dirname(__file__), "..", "manifest.json")
+    """Load manifest.json."""
     try:
-        with open(manifest_path, "r") as f:
+        with open("manifest.json", "r") as f:
             return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
+    except:
         return {"curated_repos": {}}
 
-
 def main():
-    """Generate dashboard data from security collection results."""
+    """Generate dashboard data from classified items."""
     if len(sys.argv) < 2:
-        sys.stderr.write("Usage: generate_dashboard_data.py <security_data.json>\n")
+        sys.stderr.write("Usage: generate_dashboard_data.py <classified_items.json>\n")
         sys.exit(1)
 
     try:
         with open(sys.argv[1], "r") as f:
             raw_data = json.load(f)
-    except FileNotFoundError:
-        sys.stderr.write(f"Error: {sys.argv[1]} not found\n")
-        sys.exit(1)
-    except json.JSONDecodeError:
-        sys.stderr.write(f"Error: Invalid JSON in {sys.argv[1]}\n")
+    except Exception as e:
+        sys.stderr.write(f"Error reading {sys.argv[1]}: {e}\n")
         sys.exit(1)
 
-    # Load manifest to get all repos
     manifest = load_manifest()
+
+    # Build all repos from manifest
     all_repos_manifest = []
-    for category_name, repos in manifest.get("curated_repos", {}).items():
+    for category, repos in manifest.get("curated_repos", {}).items():
         for repo in repos:
-            repo_copy = repo.copy()
-            repo_copy["category"] = category_name
-            all_repos_manifest.append(repo_copy)
+            r = repo.copy()
+            r["category"] = category
+            all_repos_manifest.append(r)
 
-    issues = raw_data.get("issues", [])
+    # Get all items and filter to security-related only
+    all_items = raw_data.get("items", [])
+    security_items = [i for i in all_items if i.get("is_security_related", False)]
 
-    # Separate issues and pull requests
-    issue_items = [i for i in issues if i.get("type") == "Issue"]
-    pr_items = [i for i in issues if i.get("type") == "PR"]
+    sys.stderr.write(f"Total items fetched: {len(all_items)}\n")
+    sys.stderr.write(f"Security-related items: {len(security_items)}\n")
 
-    # Group by repo for counting
-    by_repo = defaultdict(lambda: {"issues": 0, "prs": 0, "issue_list": []})
+    # Separate issues and PRs
+    issues = [i for i in security_items if i.get("type") == "Issue"]
+    prs = [i for i in security_items if i.get("type") == "PR"]
+
+    # Group by repo
+    by_repo = defaultdict(lambda: {"issues": 0, "prs": 0, "issue_list": [], "pr_list": []})
     by_label = defaultdict(int)
 
-    for issue in issue_items:
-        repo = issue.get("repo", "Unknown")
-        by_repo[repo]["issues"] += 1
-        by_repo[repo]["issue_list"].append(issue)
+    for issue in issues:
+        repo_key = issue.get("repo", "Unknown")
+        by_repo[repo_key]["issues"] += 1
+        by_repo[repo_key]["issue_list"].append(issue)
         for label in issue.get("labels", []):
             by_label[label] += 1
 
-    for pr in pr_items:
-        repo = pr.get("repo", "Unknown")
-        by_repo[repo]["prs"] += 1
+    for pr in prs:
+        repo_key = pr.get("repo", "Unknown")
+        by_repo[repo_key]["prs"] += 1
+        by_repo[repo_key]["pr_list"].append(pr)
         for label in pr.get("labels", []):
             by_label[label] += 1
 
-    # Build all_repos array with complete metadata
+    # Build all_repos array with ALL repos from manifest
     all_repos = []
     for repo_info in all_repos_manifest:
         repo_name = repo_info.get("name")
-        repo_data = by_repo.get(repo_name, {"issues": 0, "prs": 0, "issue_list": []})
+        repo_full = f"{repo_info.get('owner')}/{repo_info.get('repo')}"
+        repo_data = by_repo.get(repo_full, {"issues": 0, "prs": 0, "issue_list": [], "pr_list": []})
 
         all_repos.append({
             "name": repo_name,
@@ -89,63 +85,48 @@ def main():
             "url": f"https://github.com/{repo_info.get('owner')}/{repo_info.get('repo')}",
             "issue_count": repo_data["issues"],
             "pr_count": repo_data["prs"],
-            "last_activity": repo_info.get("last_activity", "Unknown")
+            "security_items_count": repo_data["issues"] + repo_data["prs"]
         })
 
-    # Calculate statistics
-    total_issues = len(issue_items)
-    total_prs = len(pr_items)
-    issues_by_state = defaultdict(int)
+    # Statistics
+    total_issues = len(issues)
+    total_prs = len(prs)
 
-    for issue in issue_items:
-        state = issue.get("state", "unknown")
-        issues_by_state[state] += 1
-
-    # Find top repos by issue count
-    top_repos = sorted(
-        [(name, counts["issues"]) for name, counts in by_repo.items()],
-        key=lambda x: x[1],
-        reverse=True
-    )[:10]
-
-    # Find top issues by engagement
+    # Top issues by engagement
     top_by_engagement = sorted(
-        issue_items,
+        security_items,
         key=lambda x: x.get("comments", 0) + x.get("reactions", 0),
         reverse=True
     )[:20]
 
-    # Build dashboard data
+    # Build dashboard
     dashboard_data = {
         "generated_at": datetime.utcnow().isoformat() + "Z",
         "summary": {
             "total_repos_tracked": len(all_repos),
-            "repos_with_issues": len([r for r in all_repos if r["issue_count"] > 0]),
-            "total_security_issues": total_issues + total_prs,
-            "time_window_days": raw_data.get("time_window_days", 180),
-            "issues_by_state": dict(issues_by_state),
-            "issues_by_type": {
-                "Issue": total_issues,
-                "PR": total_prs
-            }
+            "repos_with_security_items": len([r for r in all_repos if r["security_items_count"] > 0]),
+            "total_security_issues": total_issues,
+            "total_security_prs": total_prs,
+            "total_security_items": total_issues + total_prs,
+            "all_items_scanned": raw_data.get("total_items_found", 0),
+            "security_percentage": round(100 * (total_issues + total_prs) / raw_data.get("total_items_found", 1), 1)
         },
-        "all_repos": sorted(all_repos, key=lambda x: x["issue_count"] + x["pr_count"], reverse=True),
+        "all_repos": sorted(all_repos, key=lambda x: x["security_items_count"], reverse=True),
         "issues": [
             {
                 "repo": issue["repo"],
                 "number": issue["number"],
                 "title": issue["title"],
                 "url": issue["url"],
-                "type": issue["type"],
+                "type": "Issue",
                 "state": issue["state"],
                 "comments": issue.get("comments", 0),
                 "reactions": issue.get("reactions", 0),
-                "engagement": issue.get("comments", 0) + issue.get("reactions", 0),
                 "updated_at": issue["updated_at"],
                 "labels": issue.get("labels", []),
-                "signals": issue.get("signals", {})
+                "security_category": issue.get("security_category", "other")
             }
-            for issue in issue_items
+            for issue in issues
         ],
         "pull_requests": [
             {
@@ -153,47 +134,43 @@ def main():
                 "number": pr["number"],
                 "title": pr["title"],
                 "url": pr["url"],
-                "type": pr["type"],
+                "type": "PR",
                 "state": pr["state"],
                 "comments": pr.get("comments", 0),
                 "reactions": pr.get("reactions", 0),
-                "engagement": pr.get("comments", 0) + pr.get("reactions", 0),
                 "updated_at": pr["updated_at"],
                 "labels": pr.get("labels", []),
-                "signals": pr.get("signals", {})
+                "security_category": pr.get("security_category", "other")
             }
-            for pr in pr_items
+            for pr in prs
         ],
-        "top_issues_by_engagement": [
+        "top_items_by_engagement": [
             {
-                "repo": issue["repo"],
-                "number": issue["number"],
-                "title": issue["title"],
-                "url": issue["url"],
-                "type": issue["type"],
-                "state": issue["state"],
-                "comments": issue.get("comments", 0),
-                "reactions": issue.get("reactions", 0),
-                "engagement": issue.get("comments", 0) + issue.get("reactions", 0),
-                "updated_at": issue["updated_at"],
-                "labels": issue.get("labels", []),
-                "signals": issue.get("signals", {})
+                "repo": item["repo"],
+                "number": item["number"],
+                "title": item["title"],
+                "url": item["url"],
+                "type": item["type"],
+                "state": item["state"],
+                "comments": item.get("comments", 0),
+                "engagement": item.get("comments", 0) + item.get("reactions", 0),
+                "updated_at": item["updated_at"],
+                "security_category": item.get("security_category", "other")
             }
-            for issue in top_by_engagement
+            for item in top_by_engagement
         ],
         "labels_distribution": sorted(
             [(label, count) for label, count in by_label.items()],
             key=lambda x: x[1],
             reverse=True
-        )[:20]
+        )[:30]
     }
 
-    # Output JSON
     sys.stdout.write(json.dumps(dashboard_data, indent=2))
-    sys.stderr.write(f"✅ Dashboard data generated: {len(all_repos)} repos, {total_issues} issues, {total_prs} PRs\n")
-
-    return dashboard_data
-
+    sys.stderr.write(f"✅ Dashboard data generated\n")
+    sys.stderr.write(f"   Repos: {len(all_repos)}\n")
+    sys.stderr.write(f"   Security issues: {total_issues}\n")
+    sys.stderr.write(f"   Security PRs: {total_prs}\n")
 
 if __name__ == "__main__":
     main()

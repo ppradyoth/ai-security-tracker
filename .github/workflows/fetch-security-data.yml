@@ -1,4 +1,4 @@
-name: Fetch Security Data
+name: Fetch All Issues & Classify with TinyLlama
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # Allow manual trigger
 
 jobs:
-  fetch-data:
+  fetch-and-classify:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,39 +20,58 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Ollama
         run: |
-          python -m pip install --upgrade pip
-          pip install requests
+          curl -fsSL https://ollama.ai/install.sh | sh
+          # Start Ollama in background
+          ollama serve > /tmp/ollama.log 2>&1 &
+          sleep 5
 
-      - name: Fetch security data
+      - name: Pull TinyLlama model
+        run: |
+          timeout 300 bash -c 'until ollama list | grep -q tinyllama; do echo "Waiting for TinyLlama..."; ollama pull tinyllama && break; sleep 5; done' || echo "⚠️ TinyLlama download incomplete, will use fallback heuristics"
+
+      - name: Fetch ALL issues and PRs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p data
-          python scripts/fetch_security_data.py > /tmp/security.json 2> /tmp/fetch.log
+          python scripts/fetch_security_data.py > /tmp/raw_items.json 2> /tmp/fetch.log
           cat /tmp/fetch.log >&2
+          echo "Raw items fetched: $(jq '.total_items_found' /tmp/raw_items.json 2>/dev/null || echo 'N/A')"
 
-      - name: Save daily snapshot
+      - name: Classify with TinyLlama
         run: |
-          cp /tmp/security.json "data/$(date -u +%Y-%m-%d).json"
-          echo "✅ Snapshot saved: data/$(date -u +%Y-%m-%d).json"
-
-      - name: Update latest summary
-        run: |
-          cp /tmp/security.json data/latest.json
-          echo "Latest snapshot updated"
+          python scripts/analyze_with_tinyllama.py /tmp/raw_items.json > /tmp/classified_items.json 2> /tmp/classify.log
+          cat /tmp/classify.log >&2
+          echo "Classification complete"
 
       - name: Generate dashboard data
         run: |
           mkdir -p docs
-          python scripts/generate_dashboard_data.py /tmp/security.json > docs/data.json 2>&1
+          python scripts/generate_dashboard_data.py /tmp/classified_items.json > docs/data.json 2> /tmp/dashboard.log
+          cat /tmp/dashboard.log >&2
           echo "✅ Dashboard data generated"
+
+      - name: Save daily snapshot
+        run: |
+          cp /tmp/classified_items.json "data/$(date -u +%Y-%m-%d).json"
+          echo "✅ Snapshot saved: data/$(date -u +%Y-%m-%d).json"
+
+      - name: Update latest reference
+        run: |
+          cp /tmp/classified_items.json data/latest.json
+          echo "Latest snapshot updated"
+
+      - name: Generate detailed reports
+        run: |
+          python scripts/generate_issue_reports.py 2> /tmp/reports.log || true
+          cat /tmp/reports.log >&2
 
       - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "Security Tracker"
-          git add data/ docs/data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update security data for $(date -u +%Y-%m-%d)" && git push)
+          git config --local user.name "Security Tracker Bot"
+          git add data/ docs/data.json issues/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: daily security data refresh ($(date -u +%Y-%m-%d))" && git push)
         continue-on-error: true

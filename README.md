@@ -4,9 +4,32 @@ Comprehensive security monitoring across the AI/ML ecosystem. Track security iss
 
 **Dashboard:** [https://ppradyoth.github.io/ai-security-tracker](https://ppradyoth.github.io/ai-security-tracker)
 
+## ⚠️ **Important: Search Limitations**
+
+**This tracker currently searches for issues with SPECIFIC LABELS and KEYWORDS only:**
+- Labels: `security`, `vulnerability`, `cve`
+- Keywords: `security`, `vulnerability`, `cve`, `credential`, `secret`, etc.
+
+**Many repos don't label security work explicitly**, so this tracker may show 0 issues for repos that DO have active security work. For example:
+- **TensorFlow**: Security work exists but uses different labels like `area:security`, `type:enhancement`
+- **PyTorch**: Security discussions happen but aren't marked with a "security" label
+- **Most ML frameworks**: Focus on bug reports and features, not explicit "security" labels
+
+**Result: Current data is likely INCOMPLETE.** Repos showing 0 issues may actually have significant security activity that we're not capturing.
+
+**To improve coverage, we need to:**
+1. Expand keyword searches (add: `fix`, `patch`, `update`, `auth`, `injection`, etc.)
+2. Query CVE databases (NVD) directly for authoritative vulnerability data
+3. Analyze commit messages for security-related changes
+4. Use category-specific search strategies per repo type
+
+See [SETUP.md](SETUP.md) for how to customize security signals for better coverage.
+
+---
+
 ## Overview
 
-The AI Security Tracker provides ecosystem-wide visibility into security practices and vulnerabilities across:
+The AI Security Tracker provides ecosystem-wide visibility into security practices across:
 
 - **7+ AI CLI Tools** — Claude Code, OpenAI Codex, Gemini, GitHub Copilot, etc.
 - **6+ ML Frameworks** — TensorFlow, PyTorch, JAX, Hugging Face, LLaMA, etc.
@@ -14,12 +37,11 @@ The AI Security Tracker provides ecosystem-wide visibility into security practic
 - **5+ Security Tools** — Bandit, Safety, Snyk, GitGuardian, TruffleHog
 - **2+ Security References** — OWASP, Awesome Security
 
-**Tracking 50+ repositories daily for security signals:**
-- CVEs and reported vulnerabilities
-- GitHub security labels
+**Tracking 22 repositories for security signals** (See limitations above):
+- GitHub security labels (limited to specific terms)
 - Security-related keywords
-- Vulnerability patterns
-- Active security initiatives
+- Issue/PR activity
+- Engagement metrics
 
 ## Features
 
