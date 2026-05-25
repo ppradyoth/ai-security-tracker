@@ -31,8 +31,8 @@ Thumbs.db
 .cache/
 
 # Data files (generated daily)
+# Except for dashboard data which needs to be on GitHub Pages for the website
 data/*.json
-docs/data.json
-
-# Keep latest.json for reference
 !data/latest.json
+# Dashboard data MUST be committed for GitHub Pages to serve it
+!docs/data.json
