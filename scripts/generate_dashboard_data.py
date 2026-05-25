@@ -109,7 +109,7 @@ def main():
             "total_security_prs": total_prs,
             "total_security_items": total_issues + total_prs,
             "all_items_scanned": raw_data.get("total_items_found", 0),
-            "security_percentage": round(100 * (total_issues + total_prs) / raw_data.get("total_items_found", 1), 1)
+            "security_percentage": round(100 * (total_issues + total_prs) / max(1, raw_data.get("total_items_found", 0)), 1)
         },
         "all_repos": sorted(all_repos, key=lambda x: x["security_items_count"], reverse=True),
         "issues": [
