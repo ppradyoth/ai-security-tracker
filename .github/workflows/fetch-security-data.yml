@@ -22,26 +22,23 @@ jobs:
       - name: Install Ollama
         run: curl -fsSL https://ollama.ai/install.sh | sh
 
-      - name: Cache TinyLlama model
-        id: cache-tinyllama
-        uses: actions/cache@v4
-        with:
-          path: ~/.ollama/models
-          key: ollama-tinyllama-v1
-
-      - name: Pull TinyLlama (only if not cached)
-        if: steps.cache-tinyllama.outputs.cache-hit != 'true'
+      - name: Restore TinyLlama from release
         run: |
-          ollama serve > /tmp/ollama.log 2>&1 &
-          sleep 5
-          ollama pull tinyllama
-          echo "✅ TinyLlama downloaded and cached"
+          gh release download model-assets \
+            --pattern "tinyllama-model.tar.gz" \
+            --output /tmp/tinyllama-model.tar.gz
+          mkdir -p ~/.ollama
+          tar -xzf /tmp/tinyllama-model.tar.gz -C ~/.ollama
+          echo "✅ TinyLlama model restored from release"
+          du -sh ~/.ollama/models/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Start Ollama server
         run: |
           ollama serve > /tmp/ollama.log 2>&1 &
           sleep 3
-          echo "✅ Ollama server started"
+          ollama list
 
       - name: Fetch ALL issues and PRs
         env:

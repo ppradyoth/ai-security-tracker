@@ -1,0 +1,47 @@
+name: Setup TinyLlama (Run Once)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-model:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Ollama
+        run: |
+          curl -fsSL https://ollama.ai/install.sh | sh
+          ollama serve > /tmp/ollama.log 2>&1 &
+          sleep 5
+
+      - name: Pull TinyLlama
+        run: |
+          ollama pull tinyllama
+          echo "✅ TinyLlama pulled"
+          du -sh ~/.ollama/models/
+
+      - name: Package model
+        run: |
+          tar -czf /tmp/tinyllama-model.tar.gz -C ~/.ollama models/
+          ls -lh /tmp/tinyllama-model.tar.gz
+
+      - name: Upload to GitHub Releases
+        run: |
+          # Create release if it doesn't exist
+          gh release view model-assets 2>/dev/null || \
+            gh release create model-assets \
+              --title "TinyLlama Model Assets" \
+              --notes "Permanent storage for TinyLlama model used by the daily workflow. Do not delete." \
+              --prerelease
+
+          # Upload model archive
+          gh release upload model-assets /tmp/tinyllama-model.tar.gz \
+            --clobber
+
+          echo "✅ Model uploaded to release model-assets"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
