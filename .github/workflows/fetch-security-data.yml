@@ -2,9 +2,8 @@ name: Fetch All Issues & Classify with TinyLlama
 
 on:
   schedule:
-    # Runs daily at 08:00 UTC
     - cron: "0 8 * * *"
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   fetch-and-classify:
@@ -21,15 +20,28 @@ jobs:
           python-version: "3.11"
 
       - name: Install Ollama
+        run: curl -fsSL https://ollama.ai/install.sh | sh
+
+      - name: Cache TinyLlama model
+        id: cache-tinyllama
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-tinyllama-v1
+
+      - name: Pull TinyLlama (only if not cached)
+        if: steps.cache-tinyllama.outputs.cache-hit != 'true'
         run: |
-          curl -fsSL https://ollama.ai/install.sh | sh
-          # Start Ollama in background
           ollama serve > /tmp/ollama.log 2>&1 &
           sleep 5
+          ollama pull tinyllama
+          echo "✅ TinyLlama downloaded and cached"
 
-      - name: Pull TinyLlama model
+      - name: Start Ollama server
         run: |
-          timeout 300 bash -c 'until ollama list | grep -q tinyllama; do echo "Waiting for TinyLlama..."; ollama pull tinyllama && break; sleep 5; done' || echo "⚠️ TinyLlama download incomplete, will use fallback heuristics"
+          ollama serve > /tmp/ollama.log 2>&1 &
+          sleep 3
+          echo "✅ Ollama server started"
 
       - name: Fetch ALL issues and PRs
         env:
@@ -44,29 +56,18 @@ jobs:
         run: |
           python scripts/analyze_with_tinyllama.py /tmp/raw_items.json > /tmp/classified_items.json 2> /tmp/classify.log
           cat /tmp/classify.log >&2
-          echo "Classification complete"
 
       - name: Generate dashboard data
         run: |
           mkdir -p docs
           python scripts/generate_dashboard_data.py /tmp/classified_items.json > docs/data.json 2> /tmp/dashboard.log
           cat /tmp/dashboard.log >&2
-          echo "✅ Dashboard data generated"
 
       - name: Save daily snapshot
-        run: |
-          cp /tmp/classified_items.json "data/$(date -u +%Y-%m-%d).json"
-          echo "✅ Snapshot saved: data/$(date -u +%Y-%m-%d).json"
-
-      - name: Update latest reference
-        run: |
-          cp /tmp/classified_items.json data/latest.json
-          echo "Latest snapshot updated"
+        run: cp /tmp/classified_items.json "data/$(date -u +%Y-%m-%d).json"
 
       - name: Generate detailed reports
-        run: |
-          python scripts/generate_issue_reports.py 2> /tmp/reports.log || true
-          cat /tmp/reports.log >&2
+        run: python scripts/generate_issue_reports.py 2>&1 || true
 
       - name: Commit and push
         run: |
