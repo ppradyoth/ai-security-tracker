@@ -1,0 +1,238 @@
+{
+  "version": "1.0.0",
+  "name": "AI Security Tracker",
+  "description": "Comprehensive security tracking across AI/ML ecosystem",
+  "author": {
+    "name": "Pradyoth Prashanth",
+    "url": "https://github.com/ppradyoth"
+  },
+  "scope": "Tracks security issues, vulnerabilities, and initiatives across 50+ AI/ML and security repos",
+
+  "curated_repos": {
+    "ai_cli_tools": [
+      {
+        "name": "Claude Code",
+        "owner": "anthropics",
+        "repo": "claude-code",
+        "focus": "AI code assistant for terminal"
+      },
+      {
+        "name": "OpenAI Codex",
+        "owner": "openai",
+        "repo": "codex-python",
+        "focus": "AI code generation"
+      },
+      {
+        "name": "GitHub Copilot CLI",
+        "owner": "github",
+        "repo": "copilot-cli",
+        "focus": "GitHub's AI assistant for terminal"
+      },
+      {
+        "name": "Google Gemini CLI",
+        "owner": "google-gemini",
+        "repo": "gemini-cli",
+        "focus": "Google's AI assistant"
+      },
+      {
+        "name": "Kimi Code CLI",
+        "owner": "MoonshotAI",
+        "repo": "kimi-cli",
+        "focus": "Moonshot AI's code assistant"
+      }
+    ],
+
+    "ml_frameworks": [
+      {
+        "name": "TensorFlow",
+        "owner": "tensorflow",
+        "repo": "tensorflow",
+        "focus": "Deep learning framework by Google"
+      },
+      {
+        "name": "PyTorch",
+        "owner": "pytorch",
+        "repo": "pytorch",
+        "focus": "Deep learning framework by Meta"
+      },
+      {
+        "name": "Hugging Face Transformers",
+        "owner": "huggingface",
+        "repo": "transformers",
+        "focus": "LLM and transformer library"
+      },
+      {
+        "name": "JAX",
+        "owner": "google",
+        "repo": "jax",
+        "focus": "Composable transformation framework"
+      },
+      {
+        "name": "LLaMA",
+        "owner": "facebookresearch",
+        "repo": "llama",
+        "focus": "Large Language Model by Meta"
+      },
+      {
+        "name": "Ollama",
+        "owner": "ollama",
+        "repo": "ollama",
+        "focus": "LLM runner"
+      }
+    ],
+
+    "agent_frameworks": [
+      {
+        "name": "LangChain",
+        "owner": "langchain-ai",
+        "repo": "langchain",
+        "focus": "LLM application framework"
+      },
+      {
+        "name": "AutoGen",
+        "owner": "microsoft",
+        "repo": "autogen",
+        "focus": "Multi-agent conversation framework"
+      },
+      {
+        "name": "CrewAI",
+        "owner": "joaomdmoura",
+        "repo": "crewai",
+        "focus": "Multi-agent orchestration"
+      },
+      {
+        "name": "LlamaIndex",
+        "owner": "run-llama",
+        "repo": "llama_index",
+        "focus": "LLM data framework"
+      }
+    ],
+
+    "security_tools": [
+      {
+        "name": "Bandit",
+        "owner": "PyCQA",
+        "repo": "bandit",
+        "focus": "Python security issue scanner"
+      },
+      {
+        "name": "Safety",
+        "owner": "pyupio",
+        "repo": "safety",
+        "focus": "Python vulnerability scanner"
+      },
+      {
+        "name": "Snyk",
+        "owner": "snyk",
+        "repo": "snyk",
+        "focus": "Developer security platform"
+      },
+      {
+        "name": "GitGuardian",
+        "owner": "GitGuardian",
+        "repo": "ggshield",
+        "focus": "Secret scanning and detection"
+      },
+      {
+        "name": "TruffleHog",
+        "owner": "trufflesecurity",
+        "repo": "trufflehog",
+        "focus": "Secret scanning tool"
+      }
+    ],
+
+    "security_references": [
+      {
+        "name": "OWASP Top 10",
+        "owner": "OWASP",
+        "repo": "Top10",
+        "focus": "Web application security"
+      },
+      {
+        "name": "Awesome Security",
+        "owner": "sbilly",
+        "repo": "awesome-security",
+        "focus": "Curated list of security resources"
+      }
+    ]
+  },
+
+  "security_signals": {
+    "security_labels": [
+      "security",
+      "vulnerability",
+      "cve",
+      "critical",
+      "high",
+      "security-issue",
+      "bug"
+    ],
+
+    "credential_keywords": [
+      "credential",
+      "secret",
+      "api_key",
+      "apikey",
+      "password",
+      "token",
+      "bearer",
+      "authentication",
+      "oauth",
+      "jwt",
+      "private_key",
+      "API key"
+    ],
+
+    "vulnerability_keywords": [
+      "vulnerability",
+      "vuln",
+      "exploit",
+      "attack",
+      "injection",
+      "xss",
+      "csrf",
+      "sql injection",
+      "remote code execution",
+      "rce",
+      "privilege escalation",
+      "dos",
+      "denial of service"
+    ],
+
+    "security_initiative_keywords": [
+      "security fix",
+      "security enhancement",
+      "security improvement",
+      "hardened",
+      "secure",
+      "encryption",
+      "secure by default",
+      "threat model"
+    ]
+  },
+
+  "data_collection": {
+    "time_window_days": 180,
+    "update_frequency": "daily",
+    "sources": ["github_api"]
+  },
+
+  "report_schedule": {
+    "daily": {
+      "time": "08:00 UTC",
+      "description": "Daily snapshot of new security issues/PRs"
+    },
+    "weekly": {
+      "day": "Monday",
+      "time": "09:00 UTC",
+      "description": "Weekly trend analysis"
+    },
+    "monthly": {
+      "day": "1",
+      "time": "10:00 UTC",
+      "description": "Monthly deep dive"
+    }
+  },
+
+  "notes": "Phase 1 MVP: Focus on GitHub API data collection across 30+ curated repos. Phase 2 will add trend analysis, CVE data, and advanced dashboards."
+}

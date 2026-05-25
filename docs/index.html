@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Security Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>🔐 AI Security Tracker</h1>
+                    <p class="subtitle">Comprehensive security monitoring across AI/ML ecosystem</p>
+                </div>
+                <div class="header-meta">
+                    <div class="last-updated">
+                        <span class="label">Last Updated</span>
+                        <span class="value" id="lastUpdated">—</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="overview">Overview</button>
+            <button class="tab-button" data-tab="repositories">Repositories</button>
+            <button class="tab-button" data-tab="issues">Top Issues</button>
+            <button class="tab-button" data-tab="labels">Labels</button>
+        </nav>
+
+        <!-- Tab Content -->
+        <main class="main">
+            <!-- Overview Tab -->
+            <section id="overview-tab" class="tab-content active">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="totalRepos">—</div>
+                        <div class="metric-label">Repos Tracked</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="totalIssues">—</div>
+                        <div class="metric-label">Security Issues</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="openIssues">—</div>
+                        <div class="metric-label">Open Issues</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="closedIssues">—</div>
+                        <div class="metric-label">Closed Issues</div>
+                    </div>
+                </div>
+
+                <section class="section">
+                    <h2>Issues by Type</h2>
+                    <div id="issuesByType" class="type-grid"></div>
+                </section>
+
+                <section class="section">
+                    <h2>Top Issues by Engagement</h2>
+                    <div id="topEngagement" class="issues-list"></div>
+                </section>
+            </section>
+
+            <!-- Repositories Tab -->
+            <section id="repositories-tab" class="tab-content">
+                <section class="section">
+                    <h2>Tracked Repositories</h2>
+                    <div id="repositoriesList" class="repos-grid"></div>
+                </section>
+            </section>
+
+            <!-- Top Issues Tab -->
+            <section id="issues-tab" class="tab-content">
+                <section class="section">
+                    <h2>Most Active Security Issues</h2>
+                    <div id="allIssues" class="issues-list"></div>
+                </section>
+            </section>
+
+            <!-- Labels Tab -->
+            <section id="labels-tab" class="tab-content">
+                <section class="section">
+                    <h2>Security Labels Distribution</h2>
+                    <div id="labelsList" class="labels-grid"></div>
+                </section>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AI Security Tracker — Monitoring security across 50+ AI/ML repositories</p>
+            <p class="small">Data updates daily at 08:00 UTC | <a href="https://github.com/ppradyoth/ai-security-tracker" target="_blank">View on GitHub</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
