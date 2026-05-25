@@ -1,240 +1,304 @@
 {
-  "generated_at": "2026-05-25T06:29:03.222702Z",
+  "generated_at": "2026-05-25T06:40:07.429498Z",
   "summary": {
     "total_repos_tracked": 22,
+    "repos_with_issues": 4,
     "total_security_issues": 111,
     "time_window_days": 180,
     "issues_by_state": {
-      "open": 85,
-      "closed": 26
+      "open": 73,
+      "closed": 18
     },
     "issues_by_type": {
       "Issue": 91,
       "PR": 20
     }
   },
-  "top_repos": [
+  "all_repos": [
     {
-      "repo": "Claude Code",
-      "issue_count": 30,
-      "issues": [
-        {
-          "number": 38335,
-          "title": "[BUG] Claude Max plan session limits exhausted abnormally fast since March 23, 2026 (CLI usage)",
-          "url": "https://github.com/anthropics/claude-code/issues/38335",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T05:14:21Z",
-          "engagement": 1261
-        },
-        {
-          "number": 62061,
-          "title": "[BUG] v2.1.150 adds server-side system prompt injection via `tengu_heron_brook` feature flag",
-          "url": "https://github.com/anthropics/claude-code/issues/62061",
-          "state": "closed",
-          "type": "Issue",
-          "updated_at": "2026-05-25T04:58:29Z",
-          "engagement": 40
-        },
-        {
-          "number": 62139,
-          "title": "[UX] Distinguish 'Stop hook execution error' from 'Stop hook objection' when hook returns ok:false",
-          "url": "https://github.com/anthropics/claude-code/issues/62139",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T04:42:40Z",
-          "engagement": 0
-        },
-        {
-          "number": 62089,
-          "title": "[Security] DNS TXT challenge for web pentest authorization",
-          "url": "https://github.com/anthropics/claude-code/issues/62089",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T04:40:29Z",
-          "engagement": 1
-        },
-        {
-          "number": 62104,
-          "title": "Prevent archiving (and deleting) of pinned sessions in CCD",
-          "url": "https://github.com/anthropics/claude-code/issues/62104",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T04:40:27Z",
-          "engagement": 2
-        }
-      ]
+      "name": "Claude Code",
+      "owner": "anthropics",
+      "repo": "claude-code",
+      "category": "ai_cli_tools",
+      "url": "https://github.com/anthropics/claude-code",
+      "issue_count": 29,
+      "pr_count": 1,
+      "last_activity": "Unknown"
     },
     {
-      "repo": "Kimi Code CLI",
-      "issue_count": 30,
-      "issues": [
-        {
-          "number": 2269,
-          "title": "[Feature Request] Remote Control / Multi-Device Session Handoff",
-          "url": "https://github.com/MoonshotAI/kimi-cli/issues/2269",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-22T11:11:03Z",
-          "engagement": 5
-        },
-        {
-          "number": 2152,
-          "title": "[Feature Request] Support global ~/.kimi/AGENTS.md for multi-project shared conventions",
-          "url": "https://github.com/MoonshotAI/kimi-cli/issues/2152",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-16T21:39:38Z",
-          "engagement": 9
-        },
-        {
-          "number": 2273,
-          "title": "[Security] Auto-updater downloads + executes binary with no integrity verification (no sha256/signature) and uses unfiltered `tarfile.extractall`",
-          "url": "https://github.com/MoonshotAI/kimi-cli/issues/2273",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-15T02:33:11Z",
-          "engagement": 1
-        },
-        {
-          "number": 2285,
-          "title": "fix(update): use filter='data' on tarfile.extractall (CVE-2007-4559 / PEP 706)",
-          "url": "https://github.com/MoonshotAI/kimi-cli/pull/2285",
-          "state": "open",
-          "type": "PR",
-          "updated_at": "2026-05-14T18:48:21Z",
-          "engagement": 1
-        },
-        {
-          "number": 2265,
-          "title": "## \u95ee\u9898\uff1aMCP \u5b50\u8fdb\u7a0b stderr \u65e5\u5fd7\u6cc4\u6f0f\u5230 TUI \u754c\u9762\uff08regression\uff09 || ## Problem: MCP subprocess stderr log leaks to TUI interface (regression)",
-          "url": "https://github.com/MoonshotAI/kimi-cli/issues/2265",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-13T15:07:12Z",
-          "engagement": 0
-        }
-      ]
+      "name": "Kimi Code CLI",
+      "owner": "MoonshotAI",
+      "repo": "kimi-cli",
+      "category": "ai_cli_tools",
+      "url": "https://github.com/MoonshotAI/kimi-cli",
+      "issue_count": 18,
+      "pr_count": 12,
+      "last_activity": "Unknown"
     },
     {
-      "repo": "GitHub Copilot CLI",
+      "name": "GitHub Copilot CLI",
+      "owner": "github",
+      "repo": "copilot-cli",
+      "category": "ai_cli_tools",
+      "url": "https://github.com/github/copilot-cli",
       "issue_count": 28,
-      "issues": [
-        {
-          "number": 3506,
-          "title": "Feature request: Allow plugins to declare tool requirements for custom agents when spawned as sub-agents",
-          "url": "https://github.com/github/copilot-cli/issues/3506",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-24T22:55:53Z",
-          "engagement": 0
-        },
-        {
-          "number": 2717,
-          "title": "Copilot CLI ignores `oauth.clientId` in mcp-config.json, always uses Dynamic Client Registration (DCR)",
-          "url": "https://github.com/github/copilot-cli/issues/2717",
-          "state": "closed",
-          "type": "Issue",
-          "updated_at": "2026-05-21T14:15:23Z",
-          "engagement": 5
-        },
-        {
-          "number": 3452,
-          "title": "Feature Request: --disable-plugin flag for per-session plugin control",
-          "url": "https://github.com/github/copilot-cli/issues/3452",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-21T13:23:16Z",
-          "engagement": 0
-        },
-        {
-          "number": 1133,
-          "title": "Add `/security-review` command for automated vulnerability detection",
-          "url": "https://github.com/github/copilot-cli/issues/1133",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-21T09:25:32Z",
-          "engagement": 1
-        },
-        {
-          "number": 3421,
-          "title": "Azure DevOps MCP Server Connected but CLI Commands Fail with \"Dangerous Request.Path\" Error",
-          "url": "https://github.com/github/copilot-cli/issues/3421",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-20T16:54:59Z",
-          "engagement": 1
-        }
-      ]
+      "pr_count": 0,
+      "last_activity": "Unknown"
     },
     {
-      "repo": "Google Gemini CLI",
-      "issue_count": 23,
-      "issues": [
-        {
-          "number": 19873,
-          "title": "Leverage model's bash affinity via Zero-Dependency OS Sandboxing & Post-Execution Intent Routing",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/19873",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T05:39:54Z",
-          "engagement": 8
-        },
-        {
-          "number": 17648,
-          "title": "BUG: `codebase_investigator` Agent Fails to Initialize in Gemini CLI",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/17648",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T05:39:44Z",
-          "engagement": 1
-        },
-        {
-          "number": 16802,
-          "title": "Epic: Gemini CLI addresses all security review flags (1.0)",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/16802",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T05:39:38Z",
-          "engagement": 1
-        },
-        {
-          "number": 15670,
-          "title": "Standardizing Reusable Intelligence: A Native \"Sub-agent\" and \"Skills\" Architecture",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/15670",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T05:39:37Z",
-          "engagement": 1
-        },
-        {
-          "number": 15272,
-          "title": "Security: Default Hook Sandboxing",
-          "url": "https://github.com/google-gemini/gemini-cli/issues/15272",
-          "state": "open",
-          "type": "Issue",
-          "updated_at": "2026-05-25T05:39:35Z",
-          "engagement": 2
-        }
-      ]
+      "name": "Google Gemini CLI",
+      "owner": "google-gemini",
+      "repo": "gemini-cli",
+      "category": "ai_cli_tools",
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "issue_count": 16,
+      "pr_count": 7,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "OpenAI Codex",
+      "owner": "openai",
+      "repo": "codex-python",
+      "category": "ai_cli_tools",
+      "url": "https://github.com/openai/codex-python",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "TensorFlow",
+      "owner": "tensorflow",
+      "repo": "tensorflow",
+      "category": "ml_frameworks",
+      "url": "https://github.com/tensorflow/tensorflow",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "PyTorch",
+      "owner": "pytorch",
+      "repo": "pytorch",
+      "category": "ml_frameworks",
+      "url": "https://github.com/pytorch/pytorch",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "Hugging Face Transformers",
+      "owner": "huggingface",
+      "repo": "transformers",
+      "category": "ml_frameworks",
+      "url": "https://github.com/huggingface/transformers",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "JAX",
+      "owner": "google",
+      "repo": "jax",
+      "category": "ml_frameworks",
+      "url": "https://github.com/google/jax",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "LLaMA",
+      "owner": "facebookresearch",
+      "repo": "llama",
+      "category": "ml_frameworks",
+      "url": "https://github.com/facebookresearch/llama",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "Ollama",
+      "owner": "ollama",
+      "repo": "ollama",
+      "category": "ml_frameworks",
+      "url": "https://github.com/ollama/ollama",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "LangChain",
+      "owner": "langchain-ai",
+      "repo": "langchain",
+      "category": "agent_frameworks",
+      "url": "https://github.com/langchain-ai/langchain",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "AutoGen",
+      "owner": "microsoft",
+      "repo": "autogen",
+      "category": "agent_frameworks",
+      "url": "https://github.com/microsoft/autogen",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "CrewAI",
+      "owner": "joaomdmoura",
+      "repo": "crewai",
+      "category": "agent_frameworks",
+      "url": "https://github.com/joaomdmoura/crewai",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "LlamaIndex",
+      "owner": "run-llama",
+      "repo": "llama_index",
+      "category": "agent_frameworks",
+      "url": "https://github.com/run-llama/llama_index",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "Bandit",
+      "owner": "PyCQA",
+      "repo": "bandit",
+      "category": "security_tools",
+      "url": "https://github.com/PyCQA/bandit",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "Safety",
+      "owner": "pyupio",
+      "repo": "safety",
+      "category": "security_tools",
+      "url": "https://github.com/pyupio/safety",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "Snyk",
+      "owner": "snyk",
+      "repo": "snyk",
+      "category": "security_tools",
+      "url": "https://github.com/snyk/snyk",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "GitGuardian",
+      "owner": "GitGuardian",
+      "repo": "ggshield",
+      "category": "security_tools",
+      "url": "https://github.com/GitGuardian/ggshield",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "TruffleHog",
+      "owner": "trufflesecurity",
+      "repo": "trufflehog",
+      "category": "security_tools",
+      "url": "https://github.com/trufflesecurity/trufflehog",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "OWASP Top 10",
+      "owner": "OWASP",
+      "repo": "Top10",
+      "category": "security_references",
+      "url": "https://github.com/OWASP/Top10",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
+    },
+    {
+      "name": "Awesome Security",
+      "owner": "sbilly",
+      "repo": "awesome-security",
+      "category": "security_references",
+      "url": "https://github.com/sbilly/awesome-security",
+      "issue_count": 0,
+      "pr_count": 0,
+      "last_activity": "Unknown"
     }
   ],
-  "top_issues_by_engagement": [
+  "issues": [
     {
-      "repo": "Claude Code",
-      "number": 38335,
-      "title": "[BUG] Claude Max plan session limits exhausted abnormally fast since March 23, 2026 (CLI usage)",
-      "url": "https://github.com/anthropics/claude-code/issues/38335",
+      "repo": "Google Gemini CLI",
+      "number": 19873,
+      "title": "Leverage model's bash affinity via Zero-Dependency OS Sandboxing & Post-Execution Intent Routing",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/19873",
       "type": "Issue",
       "state": "open",
-      "comments": 736,
-      "reactions": 525,
-      "engagement": 1261,
-      "updated_at": "2026-05-25T05:14:21Z",
+      "comments": 7,
+      "reactions": 1,
+      "engagement": 8,
+      "updated_at": "2026-05-25T05:39:54Z",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/enhancement",
+        "effort/large"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
         "security_keywords_found": [
+          "security",
+          "critical",
+          "high"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "credential"
+        ]
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 17648,
+      "title": "BUG: `codebase_investigator` Agent Fails to Initialize in Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/17648",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T05:39:44Z",
+      "labels": [
+        "priority/p1",
+        "priority/p2",
+        "area/agent",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/bug"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high",
           "bug"
         ],
         "vulnerability_keywords_found": [],
@@ -242,16 +306,178 @@
       }
     },
     {
-      "repo": "Claude Code",
-      "number": 27302,
-      "title": "[FEATURE] Support multiple Connector accounts (same connector, different accounts) in Claude and Claude Code on the web (claude.ai/code)",
-      "url": "https://github.com/anthropics/claude-code/issues/27302",
+      "repo": "Google Gemini CLI",
+      "number": 16802,
+      "title": "Epic: Gemini CLI addresses all security review flags (1.0)",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/16802",
       "type": "Issue",
       "state": "open",
-      "comments": 180,
-      "reactions": 327,
-      "engagement": 507,
-      "updated_at": "2026-05-25T01:00:32Z",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T05:39:38Z",
+      "labels": [
+        "priority/p1",
+        "area/security",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 15670,
+      "title": "Standardizing Reusable Intelligence: A Native \"Sub-agent\" and \"Skills\" Architecture",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/15670",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T05:39:37Z",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 15272,
+      "title": "Security: Default Hook Sandboxing",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/15272",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-25T05:39:35Z",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "area/security",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/question"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 15266,
+      "title": "Security: Hook Execution Confirmation",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/15266",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T05:39:34Z",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "area/security",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/question"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 14540,
+      "title": "Complete Gemini CLI CI/CD Security Review",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/14540",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-25T05:39:32Z",
+      "labels": [
+        "priority/p2",
+        "area/security",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 3716,
+      "title": "Infra: Build and Tag Docker for PR's",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/3716",
+      "type": "Issue",
+      "state": "open",
+      "comments": 13,
+      "reactions": 0,
+      "engagement": 13,
+      "updated_at": "2026-05-25T05:39:29Z",
+      "labels": [
+        "priority/p2",
+        "1.0/eng-excellence",
+        "Stale",
+        "area/documentation",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/bug"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -273,6 +499,2877 @@
       "reactions": 150,
       "engagement": 195,
       "updated_at": "2026-05-25T05:39:28Z",
+      "labels": [
+        "priority/p3",
+        "area/agent",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 38335,
+      "title": "[BUG] Claude Max plan session limits exhausted abnormally fast since March 23, 2026 (CLI usage)",
+      "url": "https://github.com/anthropics/claude-code/issues/38335",
+      "type": "Issue",
+      "state": "open",
+      "comments": 736,
+      "reactions": 525,
+      "engagement": 1261,
+      "updated_at": "2026-05-25T05:14:21Z",
+      "labels": [
+        "invalid"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62061,
+      "title": "[BUG] v2.1.150 adds server-side system prompt injection via `tengu_heron_brook` feature flag",
+      "url": "https://github.com/anthropics/claude-code/issues/62061",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 3,
+      "reactions": 37,
+      "engagement": 40,
+      "updated_at": "2026-05-25T04:58:29Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:linux",
+        "area:core",
+        "area:security"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "injection",
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62139,
+      "title": "[UX] Distinguish 'Stop hook execution error' from 'Stop hook objection' when hook returns ok:false",
+      "url": "https://github.com/anthropics/claude-code/issues/62139",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-25T04:42:40Z",
+      "labels": [
+        "enhancement",
+        "area:tui",
+        "area:hooks"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62089,
+      "title": "[Security] DNS TXT challenge for web pentest authorization",
+      "url": "https://github.com/anthropics/claude-code/issues/62089",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T04:40:29Z",
+      "labels": [
+        "enhancement",
+        "area:security"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "vulnerability",
+          "critical"
+        ],
+        "vulnerability_keywords_found": [
+          "vulnerability",
+          "vuln",
+          "attack",
+          "injection"
+        ],
+        "credential_keywords_found": [
+          "token",
+          "authentication"
+        ]
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62104,
+      "title": "Prevent archiving (and deleting) of pinned sessions in CCD",
+      "url": "https://github.com/anthropics/claude-code/issues/62104",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-25T04:40:27Z",
+      "labels": [
+        "enhancement",
+        "area:mcp",
+        "area:ui",
+        "area:desktop"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62078,
+      "title": "Expose current skill name as env var to hooks",
+      "url": "https://github.com/anthropics/claude-code/issues/62078",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T04:40:25Z",
+      "labels": [
+        "enhancement",
+        "area:hooks",
+        "area:skills"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62081,
+      "title": "Idle session still triggers iTerm2 tab activity indicator (spinner)",
+      "url": "https://github.com/anthropics/claude-code/issues/62081",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T04:40:24Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:tui"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62118,
+      "title": "[BUG] /background mid-turn silently drops the in-flight turn in the forked bg session",
+      "url": "https://github.com/anthropics/claude-code/issues/62118",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-25T04:13:47Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:macos",
+        "area:agent-view"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62130,
+      "title": "[BUG] \"\u2717 Auto-update failed\" banner fires on a native install already running the latest channel version (transient check-failure surfaced as install-failure)",
+      "url": "https://github.com/anthropics/claude-code/issues/62130",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T04:10:40Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:installation"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62126,
+      "title": "Content filter false positive on bulk-creating standard OSS community files",
+      "url": "https://github.com/anthropics/claude-code/issues/62126",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-25T03:36:12Z",
+      "labels": [
+        "bug",
+        "duplicate",
+        "platform:macos",
+        "external",
+        "area:api"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "secret",
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 23114,
+      "title": "Strengthen prompt-injection defenses when reading project content",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/23114",
+      "type": "Issue",
+      "state": "open",
+      "comments": 6,
+      "reactions": 0,
+      "engagement": 6,
+      "updated_at": "2026-05-25T03:24:58Z",
+      "labels": [
+        "priority/p2",
+        "area/security",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high"
+        ],
+        "vulnerability_keywords_found": [
+          "attack",
+          "injection"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27419,
+      "title": "Ensure `shellExecutionService.ts` respects `enableInteractiveShell: false` and implements high-fidelity native bridge stability by handling non-UTF-8 bytes in the string serialization layer or when the buffer exceeds heap limits for string conversion",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/27419",
+      "type": "Issue",
+      "state": "open",
+      "comments": 4,
+      "reactions": 0,
+      "engagement": 4,
+      "updated_at": "2026-05-25T03:07:30Z",
+      "labels": [
+        "priority/p1",
+        "area/non-interactive",
+        "status/possible-duplicate",
+        "kind/bug",
+        "status/manual-triage",
+        "effort/large"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "critical",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "token",
+          "oauth"
+        ]
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 20355,
+      "title": "Gemini policy engine not blocking matching command",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/20355",
+      "type": "Issue",
+      "state": "open",
+      "comments": 5,
+      "reactions": 0,
+      "engagement": 5,
+      "updated_at": "2026-05-25T02:22:47Z",
+      "labels": [
+        "priority/p1",
+        "area/enterprise",
+        "status/bot-triaged",
+        "kind/bug"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27393,
+      "title": "Command substitution block should be user-configurable, not a hardcoded wall",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/27393",
+      "type": "Issue",
+      "state": "open",
+      "comments": 9,
+      "reactions": 0,
+      "engagement": 9,
+      "updated_at": "2026-05-25T02:22:46Z",
+      "labels": [
+        "priority/p3",
+        "area/agent",
+        "status/possible-duplicate",
+        "status/bot-triaged",
+        "kind/enhancement",
+        "help wanted"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62108,
+      "title": "Add active_skill field to PreToolUse hook input (enable skill-scoped permission rules)",
+      "url": "https://github.com/anthropics/claude-code/issues/62108",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-25T02:22:12Z",
+      "labels": [
+        "enhancement",
+        "area:hooks",
+        "area:skills",
+        "area:permissions"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 16288,
+      "title": "Plugin hooks not loaded from external hooks.json file",
+      "url": "https://github.com/anthropics/claude-code/issues/16288",
+      "type": "Issue",
+      "state": "open",
+      "comments": 18,
+      "reactions": 17,
+      "engagement": 35,
+      "updated_at": "2026-05-25T01:35:18Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:linux",
+        "area:core"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 27302,
+      "title": "[FEATURE] Support multiple Connector accounts (same connector, different accounts) in Claude and Claude Code on the web (claude.ai/code)",
+      "url": "https://github.com/anthropics/claude-code/issues/27302",
+      "type": "Issue",
+      "state": "open",
+      "comments": 180,
+      "reactions": 327,
+      "engagement": 507,
+      "updated_at": "2026-05-25T01:00:32Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 61993,
+      "title": "Sub-agents cannot spawn other sub-agents: `Task`/`Agent` primitive not exposed in nested contexts",
+      "url": "https://github.com/anthropics/claude-code/issues/61993",
+      "type": "Issue",
+      "state": "open",
+      "comments": 7,
+      "reactions": 0,
+      "engagement": 7,
+      "updated_at": "2026-05-25T00:13:22Z",
+      "labels": [
+        "bug",
+        "platform:windows",
+        "area:agents"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 60133,
+      "title": "Socket connection closed unexpectedly during long agentic sessions (Bun: no SO_KEEPALIVE, keepalives disabled via feature flags)",
+      "url": "https://github.com/anthropics/claude-code/issues/60133",
+      "type": "Issue",
+      "state": "open",
+      "comments": 12,
+      "reactions": 7,
+      "engagement": 19,
+      "updated_at": "2026-05-24T23:59:36Z",
+      "labels": [
+        "bug",
+        "duplicate",
+        "has repro",
+        "platform:linux",
+        "area:networking"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 62095,
+      "title": "Feature Request: Built-in credential detection for file writes and routines",
+      "url": "https://github.com/anthropics/claude-code/issues/62095",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-24T23:10:51Z",
+      "labels": [
+        "enhancement",
+        "platform:macos",
+        "area:security",
+        "area:routines"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "injection",
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "credential",
+          "secret",
+          "password",
+          "token",
+          "bearer",
+          "authentication",
+          "API key"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3506,
+      "title": "Feature request: Allow plugins to declare tool requirements for custom agents when spawned as sub-agents",
+      "url": "https://github.com/github/copilot-cli/issues/3506",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-24T22:55:53Z",
+      "labels": [
+        "area:agents",
+        "area:plugins",
+        "area:tools"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 41722,
+      "title": "[BUG] Bash Commands do not execute, Return No Output",
+      "url": "https://github.com/anthropics/claude-code/issues/41722",
+      "type": "Issue",
+      "state": "open",
+      "comments": 13,
+      "reactions": 3,
+      "engagement": 16,
+      "updated_at": "2026-05-24T22:55:09Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "api:bedrock",
+        "platform:macos",
+        "area:bash"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "api_key",
+          "apikey"
+        ]
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 45399,
+      "title": "[BUG] Desktop app missing slash commands available in CLI (/btw, /compact, /diff, etc.)",
+      "url": "https://github.com/anthropics/claude-code/issues/45399",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 5,
+      "reactions": 0,
+      "engagement": 5,
+      "updated_at": "2026-05-24T22:35:57Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:skills",
+        "area:desktop",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 49509,
+      "title": "[Bug] Opus model access revoked despite active max subscription",
+      "url": "https://github.com/anthropics/claude-code/issues/49509",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 3,
+      "reactions": 0,
+      "engagement": 3,
+      "updated_at": "2026-05-24T22:35:15Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:auth",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 49389,
+      "title": "This appears to be a feature announcement/discussion post rather than a bug report for Claude Code. It describes an open-source security tool (Lazarus) that the user has created as a companion to Claude Code, not an issue with Claude Code itself.\n\nHowever,",
+      "url": "https://github.com/anthropics/claude-code/issues/49389",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 3,
+      "reactions": 0,
+      "engagement": 3,
+      "updated_at": "2026-05-24T22:34:31Z",
+      "labels": [
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 42227,
+      "title": "[BUG] Cowork \"Virtualization is not available\" on Windows 11 Pro despite Hyper-V fully enabled \u2014 AMD Ryzen 5 4600G",
+      "url": "https://github.com/anthropics/claude-code/issues/42227",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 4,
+      "reactions": 0,
+      "engagement": 4,
+      "updated_at": "2026-05-24T22:34:28Z",
+      "labels": [
+        "invalid",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 48971,
+      "title": "Agent SDK: dual result events cause false retry on exit code 1",
+      "url": "https://github.com/anthropics/claude-code/issues/48971",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 3,
+      "reactions": 0,
+      "engagement": 3,
+      "updated_at": "2026-05-24T22:33:36Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:linux",
+        "area:agent-sdk",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 36362,
+      "title": "[Bug] Claude Desktop Code mode unresponsive - no loading indicator after message send",
+      "url": "https://github.com/anthropics/claude-code/issues/36362",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 16,
+      "reactions": 1,
+      "engagement": 17,
+      "updated_at": "2026-05-24T22:33:14Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:plugins",
+        "area:desktop",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 48509,
+      "title": "[BUG] Bounds check (Intellij plugin)",
+      "url": "https://github.com/anthropics/claude-code/issues/48509",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-24T22:32:54Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:linux",
+        "area:ide",
+        "platform:intellij",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 36422,
+      "title": "[BUG] Updating to Claude 1.1.7714 (3bd6f6) causes Claude Code to stop responding to any prompts",
+      "url": "https://github.com/anthropics/claude-code/issues/36422",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 20,
+      "reactions": 0,
+      "engagement": 20,
+      "updated_at": "2026-05-24T22:32:51Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:desktop",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 48474,
+      "title": "Claude repeatedly commits and pushes directly to main despite explicit instructions",
+      "url": "https://github.com/anthropics/claude-code/issues/48474",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 3,
+      "reactions": 0,
+      "engagement": 3,
+      "updated_at": "2026-05-24T22:32:43Z",
+      "labels": [
+        "bug",
+        "area:core",
+        "git",
+        "stale"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 48679,
+      "title": "MCP tool-call parser appends `</payload></invoke>` to string parameter values (100% repro within affected session)",
+      "url": "https://github.com/anthropics/claude-code/issues/48679",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-24T22:32:18Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:macos",
+        "area:mcp"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 47371,
+      "title": "[FEATURE] alwaysAllow config per MCP server in claude_desktop_config.json \u2014 required for autonomous Cowork operation",
+      "url": "https://github.com/anthropics/claude-code/issues/47371",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 1,
+      "engagement": 2,
+      "updated_at": "2026-05-24T22:31:50Z",
+      "labels": [
+        "enhancement",
+        "area:mcp",
+        "area:cowork",
+        "area:permissions"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "attack"
+        ],
+        "credential_keywords_found": [
+          "credential",
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 47118,
+      "title": "Sub-agent context isolation: parent MCP server registrations leak into sub-agent tool output",
+      "url": "https://github.com/anthropics/claude-code/issues/47118",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 1,
+      "engagement": 2,
+      "updated_at": "2026-05-24T22:31:41Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:mcp",
+        "area:security",
+        "area:agents"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "attack",
+          "injection",
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 22571,
+      "title": "[Architecture] Real-time Observability and Control Gap in Subagent Delegation",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/22571",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-24T21:43:19Z",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "critical"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 23316,
+      "title": "Long-Context & Complex Reasoning Coding Evaluation Dataset",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/23316",
+      "type": "Issue",
+      "state": "open",
+      "comments": 80,
+      "reactions": 22,
+      "engagement": 102,
+      "updated_at": "2026-05-24T03:46:06Z",
+      "labels": [
+        "priority/p2",
+        "area/platform",
+        "\ud83d\udd12 maintainer only",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "critical",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27397,
+      "title": "[CRITICAL INCIDENT] Catastrophic Data Loss (1.2TB): Architectural Failure in Agent Reasoning & Destructive File I/O Logic",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/27397",
+      "type": "Issue",
+      "state": "open",
+      "comments": 6,
+      "reactions": 0,
+      "engagement": 6,
+      "updated_at": "2026-05-24T03:05:16Z",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "kind/bug",
+        "status/manual-triage",
+        "status/need-information"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "critical",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "injection"
+        ],
+        "credential_keywords_found": [
+          "oauth"
+        ]
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2269,
+      "title": "[Feature Request] Remote Control / Multi-Device Session Handoff",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2269",
+      "type": "Issue",
+      "state": "open",
+      "comments": 4,
+      "reactions": 1,
+      "engagement": 5,
+      "updated_at": "2026-05-22T11:11:03Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "critical"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "token",
+          "authentication",
+          "oauth"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2717,
+      "title": "Copilot CLI ignores `oauth.clientId` in mcp-config.json, always uses Dynamic Client Registration (DCR)",
+      "url": "https://github.com/github/copilot-cli/issues/2717",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 2,
+      "reactions": 3,
+      "engagement": 5,
+      "updated_at": "2026-05-21T14:15:23Z",
+      "labels": [
+        "area:authentication",
+        "area:configuration",
+        "area:mcp"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "oauth"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3452,
+      "title": "Feature Request: --disable-plugin flag for per-session plugin control",
+      "url": "https://github.com/github/copilot-cli/issues/3452",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-21T13:23:16Z",
+      "labels": [
+        "area:plugins"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1133,
+      "title": "Add `/security-review` command for automated vulnerability detection",
+      "url": "https://github.com/github/copilot-cli/issues/1133",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-21T09:25:32Z",
+      "labels": [
+        "area:tools"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "vulnerability",
+          "critical"
+        ],
+        "vulnerability_keywords_found": [
+          "vulnerability",
+          "vuln",
+          "injection",
+          "xss",
+          "sql injection"
+        ],
+        "credential_keywords_found": [
+          "password",
+          "authentication"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3421,
+      "title": "Azure DevOps MCP Server Connected but CLI Commands Fail with \"Dangerous Request.Path\" Error",
+      "url": "https://github.com/github/copilot-cli/issues/3421",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-20T16:54:59Z",
+      "labels": [
+        "area:mcp"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2980,
+      "title": "postToolUse hook additionalContext not injected into agent context window",
+      "url": "https://github.com/github/copilot-cli/issues/2980",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 2,
+      "engagement": 4,
+      "updated_at": "2026-05-19T08:05:18Z",
+      "labels": [
+        "area:context-memory",
+        "area:plugins"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "injection"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3380,
+      "title": "Add `--disable-repo-mcps` flag to skip loading MCPs from `.mcp.json` / `.github/mcp-config.json`",
+      "url": "https://github.com/github/copilot-cli/issues/3380",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-18T23:45:57Z",
+      "labels": [
+        "area:configuration",
+        "area:mcp"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1680,
+      "title": "pwsh.exe hardcoded in 6 places - CLI completely unusable on Windows 11   with only PowerShell 5.1 (closed #411 is still broken in v0.0.417)",
+      "url": "https://github.com/github/copilot-cli/issues/1680",
+      "type": "Issue",
+      "state": "open",
+      "comments": 8,
+      "reactions": 12,
+      "engagement": 20,
+      "updated_at": "2026-05-17T14:36:52Z",
+      "labels": [
+        "area:platform-windows",
+        "area:tools"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3345,
+      "title": "`.github/hooks/*.json` are not loaded in non-interactive (`copilot -p`) mode, but load correctly in interactive mode",
+      "url": "https://github.com/github/copilot-cli/issues/3345",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-17T02:40:59Z",
+      "labels": [
+        "area:non-interactive",
+        "area:plugins",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "critical",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "credential",
+          "secret"
+        ]
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2152,
+      "title": "[Feature Request] Support global ~/.kimi/AGENTS.md for multi-project shared conventions",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2152",
+      "type": "Issue",
+      "state": "open",
+      "comments": 4,
+      "reactions": 5,
+      "engagement": 9,
+      "updated_at": "2026-05-16T21:39:38Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "secret"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1082,
+      "title": "Copilot CLI hangs on sudo commands -- does not prompt for password",
+      "url": "https://github.com/github/copilot-cli/issues/1082",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 11,
+      "engagement": 14,
+      "updated_at": "2026-05-16T08:47:59Z",
+      "labels": [
+        "area:tools"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "password"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3349,
+      "title": "Document safe parsing for preToolUse.toolArgs when it is a JSON-encoded string",
+      "url": "https://github.com/github/copilot-cli/issues/3349",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-16T07:44:30Z",
+      "labels": [
+        "area:plugins"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2392,
+      "title": "preToolUse hooks are not enforced in subagents",
+      "url": "https://github.com/github/copilot-cli/issues/2392",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 1,
+      "reactions": 3,
+      "engagement": 4,
+      "updated_at": "2026-05-15T13:08:21Z",
+      "labels": [
+        "area:agents"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2273,
+      "title": "[Security] Auto-updater downloads + executes binary with no integrity verification (no sha256/signature) and uses unfiltered `tarfile.extractall`",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2273",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-15T02:33:11Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "cve",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "exploit",
+          "attack",
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3301,
+      "title": "Feature request: local web interface (like `opencode web`)",
+      "url": "https://github.com/github/copilot-cli/issues/3301",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 1,
+      "engagement": 2,
+      "updated_at": "2026-05-13T20:19:57Z",
+      "labels": [
+        "area:non-interactive"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "password"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3013,
+      "title": "Hooks don't fire for background (task) agents",
+      "url": "https://github.com/github/copilot-cli/issues/3013",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-05-13T16:57:37Z",
+      "labels": [
+        "area:permissions",
+        "area:agents",
+        "area:plugins"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "vulnerability",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "vulnerability",
+          "vuln",
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2265,
+      "title": "## \u95ee\u9898\uff1aMCP \u5b50\u8fdb\u7a0b stderr \u65e5\u5fd7\u6cc4\u6f0f\u5230 TUI \u754c\u9762\uff08regression\uff09 || ## Problem: MCP subprocess stderr log leaks to TUI interface (regression)",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2265",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-13T15:07:12Z",
+      "labels": [
+        "bug"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "vulnerability",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "vulnerability",
+          "vuln"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3264,
+      "title": "Document symlink behavior on Windows and other OS for files in .copilot folder",
+      "url": "https://github.com/github/copilot-cli/issues/3264",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-12T21:16:38Z",
+      "labels": [
+        "area:plugins",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2153,
+      "title": "Update pillow 12.1.0 -> 12.2.0",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2153",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-05-12T10:57:26Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "vulnerability",
+          "cve"
+        ],
+        "vulnerability_keywords_found": [
+          "vulnerability",
+          "vuln"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2338,
+      "title": "Permissions from .claude/settings.json not taken into account (also in \ufeffv1.0.12!)",
+      "url": "https://github.com/github/copilot-cli/issues/2338",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 2,
+      "engagement": 5,
+      "updated_at": "2026-05-11T21:25:49Z",
+      "labels": [
+        "area:permissions",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2893,
+      "title": "preToolUse hooks silently bypassed under parallel tool calls (timeout->allow fallback + serial dispatch)",
+      "url": "https://github.com/github/copilot-cli/issues/2893",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-10T21:53:19Z",
+      "labels": [
+        "area:permissions",
+        "area:plugins"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1412,
+      "title": "Powershell tools trigger security alerts",
+      "url": "https://github.com/github/copilot-cli/issues/1412",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 3,
+      "engagement": 6,
+      "updated_at": "2026-05-08T21:18:39Z",
+      "labels": [
+        "area:platform-windows"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3207,
+      "title": "Extensions can install MCP servers that bypass private registry restrictions",
+      "url": "https://github.com/github/copilot-cli/issues/3207",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-08T19:55:56Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2710,
+      "title": "Proposal: External model provider API surface for Copilot CLI (flags/env/config + BYOK)",
+      "url": "https://github.com/github/copilot-cli/issues/2710",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 2,
+      "engagement": 3,
+      "updated_at": "2026-05-08T08:17:34Z",
+      "labels": [
+        "area:models",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "secret",
+          "api_key",
+          "apikey",
+          "API key"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1607,
+      "title": "[Security] ACP protocol lacks session-level tool permission primitives that --headless provided",
+      "url": "https://github.com/github/copilot-cli/issues/1607",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-04T07:27:10Z",
+      "labels": [
+        "area:authentication",
+        "area:permissions",
+        "area:sessions",
+        "area:non-interactive"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "credential"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1354,
+      "title": "Model routing, per-agent model selection, and global hooks support",
+      "url": "https://github.com/github/copilot-cli/issues/1354",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 6,
+      "engagement": 9,
+      "updated_at": "2026-05-03T07:31:11Z",
+      "labels": [
+        "area:agents",
+        "area:models"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2040,
+      "title": "[Feature Request] Send VS Code notification (showInformationMessage) when approval is required in VS Code Extension",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2040",
+      "type": "Issue",
+      "state": "open",
+      "comments": 5,
+      "reactions": 0,
+      "engagement": 5,
+      "updated_at": "2026-05-03T00:23:11Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2143,
+      "title": "[Bug][Kimi Desktop] Windows 3.0.7 generated PDF preview downloads viewer.html because the PDF.js wrapper is served with Content-Disposition: attachment",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2143",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 1,
+      "engagement": 1,
+      "updated_at": "2026-05-01T12:51:43Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1995,
+      "title": "Feature Request: Per-Tool Permission Settings for Copilot CLI",
+      "url": "https://github.com/github/copilot-cli/issues/1995",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 8,
+      "engagement": 9,
+      "updated_at": "2026-04-30T20:41:45Z",
+      "labels": [
+        "area:permissions",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3061,
+      "title": "Custom agent inheritance / composition (extends / include) for shared base prompts",
+      "url": "https://github.com/github/copilot-cli/issues/3061",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 1,
+      "engagement": 1,
+      "updated_at": "2026-04-30T20:03:17Z",
+      "labels": [
+        "area:agents",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "secret",
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 3056,
+      "title": "Support temperature/sampling parameters in plugin SKILL.md metadata",
+      "url": "https://github.com/github/copilot-cli/issues/3056",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-04-30T20:00:56Z",
+      "labels": [
+        "area:plugins",
+        "area:models",
+        "area:configuration"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "credential",
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 107,
+      "title": "Tool calls cause Segmentation Fault on Alpine Linux",
+      "url": "https://github.com/github/copilot-cli/issues/107",
+      "type": "Issue",
+      "state": "open",
+      "comments": 14,
+      "reactions": 4,
+      "engagement": 18,
+      "updated_at": "2026-04-30T14:42:29Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1283,
+      "title": "Feature Request: Memory System - Persistent context across sessions",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1283",
+      "type": "Issue",
+      "state": "open",
+      "comments": 5,
+      "reactions": 0,
+      "engagement": 5,
+      "updated_at": "2026-04-30T14:02:08Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "injection",
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2120,
+      "title": "Tool call safety configuration/parameters",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/2120",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-04-29T22:53:26Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 2071,
+      "title": "Support `pass` (GPG-based password store) as a credential backend for headless servers",
+      "url": "https://github.com/github/copilot-cli/issues/2071",
+      "type": "Issue",
+      "state": "open",
+      "comments": 1,
+      "reactions": 9,
+      "engagement": 10,
+      "updated_at": "2026-04-29T22:46:18Z",
+      "labels": [
+        "area:non-interactive"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "credential",
+          "secret",
+          "password",
+          "token",
+          "oauth"
+        ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1971,
+      "title": "Feature Request: Granular organizational policies for Copilot CLI tools (e.g., bash, file access)",
+      "url": "https://github.com/github/copilot-cli/issues/1971",
+      "type": "Issue",
+      "state": "open",
+      "comments": 2,
+      "reactions": 1,
+      "engagement": 3,
+      "updated_at": "2026-04-29T14:43:04Z",
+      "labels": [
+        "area:tools"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1282,
+      "title": "Feature Request: Remote Control - Continue local sessions from any device",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1282",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 4,
+      "engagement": 7,
+      "updated_at": "2026-04-25T06:03:58Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "credential"
+        ]
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1865,
+      "title": "thinking\u7684\u8fc7\u7a0b\u4e3a\u4ec0\u4e48\u6ca1\u4e86\uff1f\u8fd9\u4e0d\u7eaf\u7eaf\u8d1f\u4f18\u5316\u5417 || Why is the thinking process gone? Isn\u2019t this pure negative optimization?",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1865",
+      "type": "Issue",
+      "state": "open",
+      "comments": 11,
+      "reactions": 3,
+      "engagement": 14,
+      "updated_at": "2026-04-16T02:51:11Z",
+      "labels": [
+        "bug"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1747,
+      "title": "Feature Request: Three-tier Rules System for Development Guidelines",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1747",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 0,
+      "engagement": 3,
+      "updated_at": "2026-04-08T02:46:01Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1513,
+      "title": "Windows \u5b89\u88c5\u811a\u672c\u5728\u9ed8\u8ba4 PowerShell \u6267\u884c\u7b56\u7565\u4e0b\u95ea\u9000\u4e14\u65e0\u9519\u8bef\u63d0\u793a || Windows installation script crashes without error prompt under default PowerShell execution policy",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1513",
+      "type": "Issue",
+      "state": "open",
+      "comments": 5,
+      "reactions": 0,
+      "engagement": 5,
+      "updated_at": "2026-04-03T02:22:44Z",
+      "labels": [
+        "bug"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1671,
+      "title": "bug: Error 400 content_filter when quoting code (normal code reference triggers high risk error)",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1671",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 2,
+      "reactions": 0,
+      "engagement": 2,
+      "updated_at": "2026-04-02T02:38:49Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1646,
+      "title": "[Feature Request]: Add /review slash command for code review workflow",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1646",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 1,
+      "engagement": 1,
+      "updated_at": "2026-03-30T08:51:58Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1539,
+      "title": "security issue: kimi needs to print full commands, and maybe stop cd-ing so much",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1539",
+      "type": "Issue",
+      "state": "open",
+      "comments": 0,
+      "reactions": 4,
+      "engagement": 4,
+      "updated_at": "2026-03-21T17:34:48Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 107,
+      "title": "Kimi CLI Skill.md",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/107",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 11,
+      "reactions": 6,
+      "engagement": 17,
+      "updated_at": "2026-03-20T00:40:53Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1389,
+      "title": "Kimi-CLI HTTP Headers \u6c61\u67d3\u95ee\u9898\u5bfc\u81f4LLM provider error: Connection error. || Kimi-CLI HTTP Headers pollution problem causes LLM provider error: Connection error.",
+      "url": "https://github.com/MoonshotAI/kimi-cli/issues/1389",
+      "type": "Issue",
+      "state": "closed",
+      "comments": 4,
+      "reactions": 0,
+      "engagement": 4,
+      "updated_at": "2026-03-19T04:32:11Z",
+      "labels": [
+        "bug"
+      ],
+      "signals": {
+        "has_security_label": true,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "authentication",
+          "oauth"
+        ]
+      }
+    }
+  ],
+  "pull_requests": [
+    {
+      "repo": "Google Gemini CLI",
+      "number": 26848,
+      "title": "fix(vscode-ide-companion): allow IPv6 loopback in Host header validation",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/26848",
+      "type": "PR",
+      "state": "closed",
+      "comments": 2,
+      "reactions": 1,
+      "engagement": 3,
+      "updated_at": "2026-05-25T05:29:15Z",
+      "labels": [
+        "priority/p2",
+        "area/security",
+        "status/pr-nudge-sent"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27348,
+      "title": "fix: wrap Ajv validate() in try/catch to prevent crash on malformed s\u2026",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/27348",
+      "type": "PR",
+      "state": "open",
+      "comments": 7,
+      "reactions": 1,
+      "engagement": 8,
+      "updated_at": "2026-05-25T04:01:17Z",
+      "labels": [
+        "priority/p1",
+        "area/agent"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27418,
+      "title": "feat(core): ensure non-interactive shell respects 'enableInteractiveShell: false'  and improve native bridge stability",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/27418",
+      "type": "PR",
+      "state": "open",
+      "comments": 2,
+      "reactions": 1,
+      "engagement": 3,
+      "updated_at": "2026-05-25T02:43:37Z",
+      "labels": [
+        "priority/p1",
+        "area/non-interactive"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "high"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27186,
+      "title": "Add support for custom external safety checkers",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/27186",
+      "type": "PR",
+      "state": "open",
+      "comments": 3,
+      "reactions": 1,
+      "engagement": 4,
+      "updated_at": "2026-05-25T02:23:15Z",
+      "labels": [
+        "priority/p2",
+        "area/enterprise",
+        "status/pr-nudge-sent"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 1,
+      "title": "Create SECURITY.md",
+      "url": "https://github.com/anthropics/claude-code/pull/1",
+      "type": "PR",
+      "state": "closed",
+      "comments": 25,
+      "reactions": 1,
+      "engagement": 26,
+      "updated_at": "2026-05-25T01:46:40Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27365,
+      "title": "Add ephemeral session mode (--ephemeral)",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/27365",
+      "type": "PR",
+      "state": "open",
+      "comments": 2,
+      "reactions": 1,
+      "engagement": 3,
+      "updated_at": "2026-05-24T23:05:54Z",
+      "labels": [
+        "status/need-issue"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "credential",
+          "authentication"
+        ]
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27415,
+      "title": "fix(cli): resolve input handling flaws and add emergency abort",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/27415",
+      "type": "PR",
+      "state": "open",
+      "comments": 1,
+      "reactions": 1,
+      "engagement": 2,
+      "updated_at": "2026-05-24T15:42:05Z",
+      "labels": [
+        "priority/p2",
+        "area/core",
+        "help wanted"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "critical"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 27139,
+      "title": "fix(core): validate MCP OAuth resources from metadata URL",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/27139",
+      "type": "PR",
+      "state": "open",
+      "comments": 2,
+      "reactions": 1,
+      "engagement": 3,
+      "updated_at": "2026-05-24T02:23:09Z",
+      "labels": [
+        "priority/p2",
+        "area/extensions",
+        "status/pr-nudge-sent"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "oauth"
+        ]
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2285,
+      "title": "fix(update): use filter='data' on tarfile.extractall (CVE-2007-4559 / PEP 706)",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/2285",
+      "type": "PR",
+      "state": "open",
+      "comments": 0,
+      "reactions": 1,
+      "engagement": 1,
+      "updated_at": "2026-05-14T18:48:21Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "cve"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2187,
+      "title": "fix(deps): bump pillow to 12.2.0 for CVE-2026-25990",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/2187",
+      "type": "PR",
+      "state": "closed",
+      "comments": 3,
+      "reactions": 1,
+      "engagement": 4,
+      "updated_at": "2026-05-12T10:57:25Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "cve"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 2113,
+      "title": "fix(acp): wrap shell command in `bash -c` for `terminal/create`",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/2113",
+      "type": "PR",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-09T08:29:18Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": [
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 762,
+      "title": "fix: respect SSL_CERT_FILE env var for corporate proxy support",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/762",
+      "type": "PR",
+      "state": "open",
+      "comments": 1,
+      "reactions": 0,
+      "engagement": 1,
+      "updated_at": "2026-05-08T04:35:01Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "attack",
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1798,
+      "title": "feat(telemetry): integrate telemetry tracking across interactive and \u2026",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1798",
+      "type": "PR",
+      "state": "closed",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-04-21T12:57:31Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1827,
+      "title": "fix(context): cap list_directory to 500 entries (GH-1809)",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1827",
+      "type": "PR",
+      "state": "closed",
+      "comments": 1,
+      "reactions": 1,
+      "engagement": 2,
+      "updated_at": "2026-04-10T13:19:41Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": [
+          "token"
+        ]
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1751,
+      "title": "feat(hooks): add PermissionRequest hook for external approval workflows",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1751",
+      "type": "PR",
+      "state": "open",
+      "comments": 4,
+      "reactions": 0,
+      "engagement": 4,
+      "updated_at": "2026-04-07T07:22:04Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1718,
+      "title": " docs: \u65b0\u589e AGENTS.md \u4e13\u9898\u9875\u3001\u5b89\u5168\u8fb9\u754c\u8bf4\u660e\u548c\u9996\u9875\u5bfc\u89c8 || docs: Added AGENTS.md special page, security boundary description and home page navigation",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1718",
+      "type": "PR",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-04-02T08:36:03Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1614,
+      "title": "feat(security): Add shell command security analysis to approval workflow",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1614",
+      "type": "PR",
+      "state": "open",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-03-30T16:13:06Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security",
+          "high"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1609,
+      "title": "feat(glob): allow Glob tool to access skills directories",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1609",
+      "type": "PR",
+      "state": "closed",
+      "comments": 0,
+      "reactions": 1,
+      "engagement": 1,
+      "updated_at": "2026-03-27T12:58:34Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1131,
+      "title": "feat: add AgentHooks support for dogfooding",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1131",
+      "type": "PR",
+      "state": "closed",
+      "comments": 5,
+      "reactions": 1,
+      "engagement": 6,
+      "updated_at": "2026-03-22T12:50:51Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Kimi Code CLI",
+      "number": 1422,
+      "title": "feat(shell): support steering running agent turns",
+      "url": "https://github.com/MoonshotAI/kimi-cli/pull/1422",
+      "type": "PR",
+      "state": "closed",
+      "comments": 0,
+      "reactions": 0,
+      "engagement": 0,
+      "updated_at": "2026-03-12T14:17:33Z",
+      "labels": [],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    }
+  ],
+  "top_issues_by_engagement": [
+    {
+      "repo": "Claude Code",
+      "number": 38335,
+      "title": "[BUG] Claude Max plan session limits exhausted abnormally fast since March 23, 2026 (CLI usage)",
+      "url": "https://github.com/anthropics/claude-code/issues/38335",
+      "type": "Issue",
+      "state": "open",
+      "comments": 736,
+      "reactions": 525,
+      "engagement": 1261,
+      "updated_at": "2026-05-25T05:14:21Z",
+      "labels": [
+        "invalid"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "bug"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Claude Code",
+      "number": 27302,
+      "title": "[FEATURE] Support multiple Connector accounts (same connector, different accounts) in Claude and Claude Code on the web (claude.ai/code)",
+      "url": "https://github.com/anthropics/claude-code/issues/27302",
+      "type": "Issue",
+      "state": "open",
+      "comments": 180,
+      "reactions": 327,
+      "engagement": 507,
+      "updated_at": "2026-05-25T01:00:32Z",
+      "labels": [
+        "enhancement"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [],
+        "vulnerability_keywords_found": [
+          "rce"
+        ],
+        "credential_keywords_found": []
+      }
+    },
+    {
+      "repo": "Google Gemini CLI",
+      "number": 3132,
+      "title": "[Agents] Post V1.0 Work",
+      "url": "https://github.com/google-gemini/gemini-cli/issues/3132",
+      "type": "Issue",
+      "state": "open",
+      "comments": 45,
+      "reactions": 150,
+      "engagement": 195,
+      "updated_at": "2026-05-25T05:39:28Z",
+      "labels": [
+        "priority/p3",
+        "area/agent",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -294,6 +3391,13 @@
       "reactions": 22,
       "engagement": 102,
       "updated_at": "2026-05-24T03:46:06Z",
+      "labels": [
+        "priority/p2",
+        "area/platform",
+        "\ud83d\udd12 maintainer only",
+        "status/bot-triaged",
+        "kind/enhancement"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -319,6 +3423,13 @@
       "reactions": 37,
       "engagement": 40,
       "updated_at": "2026-05-25T04:58:29Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:linux",
+        "area:core",
+        "area:security"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
@@ -343,31 +3454,16 @@
       "reactions": 17,
       "engagement": 35,
       "updated_at": "2026-05-25T01:35:18Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:linux",
+        "area:core"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
         "security_keywords_found": [],
-        "vulnerability_keywords_found": [],
-        "credential_keywords_found": []
-      }
-    },
-    {
-      "repo": "Claude Code",
-      "number": 1,
-      "title": "Create SECURITY.md",
-      "url": "https://github.com/anthropics/claude-code/pull/1",
-      "type": "PR",
-      "state": "closed",
-      "comments": 25,
-      "reactions": 1,
-      "engagement": 26,
-      "updated_at": "2026-05-25T01:46:40Z",
-      "signals": {
-        "has_security_label": false,
-        "has_vulnerability_label": false,
-        "security_keywords_found": [
-          "security"
-        ],
         "vulnerability_keywords_found": [],
         "credential_keywords_found": []
       }
@@ -383,6 +3479,12 @@
       "reactions": 0,
       "engagement": 20,
       "updated_at": "2026-05-24T22:32:51Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:desktop",
+        "stale"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
@@ -404,6 +3506,10 @@
       "reactions": 12,
       "engagement": 20,
       "updated_at": "2026-05-17T14:36:52Z",
+      "labels": [
+        "area:platform-windows",
+        "area:tools"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -425,6 +3531,13 @@
       "reactions": 7,
       "engagement": 19,
       "updated_at": "2026-05-24T23:59:36Z",
+      "labels": [
+        "bug",
+        "duplicate",
+        "has repro",
+        "platform:linux",
+        "area:networking"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
@@ -449,6 +3562,7 @@
       "reactions": 4,
       "engagement": 18,
       "updated_at": "2026-04-30T14:42:29Z",
+      "labels": [],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -470,6 +3584,13 @@
       "reactions": 1,
       "engagement": 17,
       "updated_at": "2026-05-24T22:33:14Z",
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:plugins",
+        "area:desktop",
+        "stale"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
@@ -493,6 +3614,9 @@
       "reactions": 6,
       "engagement": 17,
       "updated_at": "2026-03-20T00:40:53Z",
+      "labels": [
+        "enhancement"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -515,6 +3639,13 @@
       "reactions": 3,
       "engagement": 16,
       "updated_at": "2026-05-24T22:55:09Z",
+      "labels": [
+        "bug",
+        "has repro",
+        "api:bedrock",
+        "platform:macos",
+        "area:bash"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
@@ -540,6 +3671,9 @@
       "reactions": 11,
       "engagement": 14,
       "updated_at": "2026-05-16T08:47:59Z",
+      "labels": [
+        "area:tools"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -563,6 +3697,9 @@
       "reactions": 3,
       "engagement": 14,
       "updated_at": "2026-04-16T02:51:11Z",
+      "labels": [
+        "bug"
+      ],
       "signals": {
         "has_security_label": true,
         "has_vulnerability_label": false,
@@ -585,6 +3722,16 @@
       "reactions": 0,
       "engagement": 13,
       "updated_at": "2026-05-25T05:39:29Z",
+      "labels": [
+        "priority/p2",
+        "1.0/eng-excellence",
+        "Stale",
+        "area/documentation",
+        "\ud83d\udd12 maintainer only",
+        "workstream-rollup",
+        "status/bot-triaged",
+        "kind/bug"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -606,6 +3753,9 @@
       "reactions": 9,
       "engagement": 10,
       "updated_at": "2026-04-29T22:46:18Z",
+      "labels": [
+        "area:non-interactive"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -633,6 +3783,14 @@
       "reactions": 0,
       "engagement": 9,
       "updated_at": "2026-05-25T02:22:46Z",
+      "labels": [
+        "priority/p3",
+        "area/agent",
+        "status/possible-duplicate",
+        "status/bot-triaged",
+        "kind/enhancement",
+        "help wanted"
+      ],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -656,6 +3814,7 @@
       "reactions": 5,
       "engagement": 9,
       "updated_at": "2026-05-16T21:39:38Z",
+      "labels": [],
       "signals": {
         "has_security_label": false,
         "has_vulnerability_label": false,
@@ -666,6 +3825,31 @@
         "credential_keywords_found": [
           "secret"
         ]
+      }
+    },
+    {
+      "repo": "GitHub Copilot CLI",
+      "number": 1354,
+      "title": "Model routing, per-agent model selection, and global hooks support",
+      "url": "https://github.com/github/copilot-cli/issues/1354",
+      "type": "Issue",
+      "state": "open",
+      "comments": 3,
+      "reactions": 6,
+      "engagement": 9,
+      "updated_at": "2026-05-03T07:31:11Z",
+      "labels": [
+        "area:agents",
+        "area:models"
+      ],
+      "signals": {
+        "has_security_label": false,
+        "has_vulnerability_label": false,
+        "security_keywords_found": [
+          "security"
+        ],
+        "vulnerability_keywords_found": [],
+        "credential_keywords_found": []
       }
     }
   ],

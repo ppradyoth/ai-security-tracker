@@ -1,272 +1,290 @@
 /**
  * AI Security Tracker Dashboard
- * Client-side data loading and rendering
+ * Light theme + minimalist design
  */
 
 class SecurityTracker {
-    constructor() {
-        this.data = null;
-        this.init();
+  constructor() {
+    this.data = null;
+    this.filteredByLabel = null;
+    this.init();
+  }
+
+  async init() {
+    this.setupTabNavigation();
+    await this.loadData();
+    if (this.data) {
+      this.renderDashboard();
+    }
+  }
+
+  setupTabNavigation() {
+    const buttons = document.querySelectorAll('.tab-button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabName = button.getAttribute('data-tab');
+        this.switchTab(tabName);
+      });
+    });
+  }
+
+  switchTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    // Remove active class from all buttons
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.classList.remove('active');
+    });
+
+    // Show selected tab
+    const tab = document.getElementById(`${tabName}-tab`);
+    if (tab) {
+      tab.classList.add('active');
     }
 
-    async init() {
-        this.setupTabNavigation();
-        await this.loadData();
-        if (this.data) {
-            this.renderDashboard();
-        }
+    // Add active class to clicked button
+    const button = document.querySelector(`[data-tab="${tabName}"]`);
+    if (button) {
+      button.classList.add('active');
+    }
+  }
+
+  async loadData() {
+    try {
+      const response = await fetch('data.json');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      this.data = await response.json();
+      console.log('✅ Dashboard data loaded successfully');
+    } catch (error) {
+      console.error('Error loading data:', error);
+      this.showError(`Failed to load data: ${error.message}`);
+    }
+  }
+
+  renderDashboard() {
+    if (!this.data) return;
+
+    this.renderOverviewTab();
+    this.renderIssuesTab();
+    this.renderPullRequestsTab();
+    this.renderRepositoriesTab();
+    this.renderLabelsTab();
+  }
+
+  // ===== OVERVIEW TAB =====
+  renderOverviewTab() {
+    const summary = this.data.summary;
+
+    // Update metrics
+    document.getElementById('lastUpdated').textContent = this.formatDate(this.data.generated_at);
+    document.getElementById('footerTime').textContent = this.formatDate(this.data.generated_at);
+    document.getElementById('totalRepos').textContent = summary.total_repos_tracked.toLocaleString();
+    document.getElementById('totalIssues').textContent = summary.total_security_issues.toLocaleString();
+    document.getElementById('openIssues').textContent = (summary.issues_by_state.open || 0).toLocaleString();
+    document.getElementById('closedIssues').textContent = (summary.issues_by_state.closed || 0).toLocaleString();
+
+    // Render top issues by engagement
+    const topIssues = this.data.top_issues_by_engagement || [];
+    const topIssuesHtml = topIssues.slice(0, 10).map(issue => this.createIssueCard(issue)).join('');
+    document.getElementById('topIssues').innerHTML = topIssuesHtml || '<div class="empty-state"><p>No issues found</p></div>';
+  }
+
+  // ===== ISSUES TAB =====
+  renderIssuesTab() {
+    const issues = (this.data.issues || []).filter(issue => issue.type === 'Issue');
+    const filteredIssues = this.filteredByLabel
+      ? issues.filter(issue => issue.labels && issue.labels.includes(this.filteredByLabel))
+      : issues;
+
+    const html = filteredIssues.length > 0
+      ? filteredIssues.map(issue => this.createIssueCard(issue)).join('')
+      : '<div class="empty-state"><h3>No issues found</h3><p>Check back later for updates</p></div>';
+
+    document.getElementById('issuesList').innerHTML = html;
+  }
+
+  // ===== PULL REQUESTS TAB =====
+  renderPullRequestsTab() {
+    const prs = (this.data.pull_requests || []).filter(pr => pr.type === 'PR');
+    const filteredPRs = this.filteredByLabel
+      ? prs.filter(pr => pr.labels && pr.labels.includes(this.filteredByLabel))
+      : prs;
+
+    const html = filteredPRs.length > 0
+      ? filteredPRs.map(pr => this.createIssueCard(pr)).join('')
+      : '<div class="empty-state"><h3>No pull requests found</h3><p>Check back later for updates</p></div>';
+
+    document.getElementById('prList').innerHTML = html;
+  }
+
+  // ===== ALL REPOS TAB =====
+  renderRepositoriesTab() {
+    const repos = this.data.all_repos || [];
+
+    if (repos.length === 0) {
+      document.getElementById('reposTable').innerHTML = '<tr><td colspan="5" class="empty-state">No repositories found</td></tr>';
+      return;
     }
 
-    setupTabNavigation() {
-        const buttons = document.querySelectorAll('.tab-button');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabName = button.getAttribute('data-tab');
-                this.switchTab(tabName);
-            });
-        });
+    const rows = repos.map(repo => `
+      <tr>
+        <td><strong><a href="https://github.com/${repo.owner}/${repo.repo}" target="_blank">${repo.name}</a></strong></td>
+        <td><span class="tag">${repo.category || 'uncategorized'}</span></td>
+        <td style="text-align: center;"><strong>${repo.issue_count || 0}</strong></td>
+        <td style="text-align: center;"><strong>${repo.pr_count || 0}</strong></td>
+        <td><small>${repo.last_activity ? this.formatDate(repo.last_activity) : 'Unknown'}</small></td>
+      </tr>
+    `).join('');
+
+    document.getElementById('reposTable').innerHTML = rows;
+  }
+
+  // ===== LABELS TAB =====
+  renderLabelsTab() {
+    const labels = this.data.labels_distribution || [];
+
+    if (labels.length === 0) {
+      document.getElementById('labelsList').innerHTML = '<div class="empty-state"><p>No labels found</p></div>';
+      return;
     }
 
-    switchTab(tabName) {
-        // Hide all tabs
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.classList.remove('active');
-        });
+    const html = labels.map(([label, count]) => `
+      <div class="card" style="padding: 12px 16px; cursor: pointer; transition: all 0.2s ease;" onclick="tracker.filterByLabel('${label}')">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <strong>${label}</strong>
+          <span style="background: #e5e7eb; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">${count}</span>
+        </div>
+      </div>
+    `).join('');
 
-        // Remove active class from all buttons
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.classList.remove('active');
-        });
+    document.getElementById('labelsList').innerHTML = html;
+  }
 
-        // Show selected tab
-        const tab = document.getElementById(`${tabName}-tab`);
-        if (tab) {
-            tab.classList.add('active');
-        }
+  // ===== HELPER: CREATE ISSUE CARD =====
+  createIssueCard(issue) {
+    if (!issue) return '';
 
-        // Add active class to clicked button
-        const button = document.querySelector(`[data-tab="${tabName}"]`);
-        if (button) {
-            button.classList.add('active');
-        }
+    const severity = this.detectSeverity(issue);
+    const severityClass = `issue-card ${severity}`;
+    const issueBadgeClass = issue.type === 'PR' ? 'badge-pr' : 'badge-issue';
+    const typeBadge = issue.type === 'PR' ? 'PR' : 'Issue';
+    const stateBadgeClass = issue.state === 'open' ? 'badge-open' : 'badge-closed';
+    const stateText = issue.state === 'open' ? 'OPEN' : 'CLOSED';
+
+    return `
+      <div class="${severityClass}">
+        <a href="${issue.url}" target="_blank" class="issue-title">#${issue.number} ${this.escapeHtml(issue.title)}</a>
+        <div class="issue-tags">
+          <span class="badge ${issueBadgeClass}">${typeBadge}</span>
+          <span class="badge ${stateBadgeClass}">${stateText}</span>
+          <span class="tag">${this.escapeHtml(issue.repo)}</span>
+        </div>
+        <div class="issue-meta">
+          <span>💬 ${issue.comments || 0}</span>
+          <span>❤️ ${issue.reactions || 0}</span>
+          <span>Updated: ${this.formatDate(issue.updated_at)}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // ===== HELPER: DETECT SEVERITY =====
+  detectSeverity(issue) {
+    // Check for critical signals
+    if (issue.signals) {
+      if (issue.signals.has_vulnerability_label) return 'critical';
+      if (issue.signals.credential_keywords_found && issue.signals.credential_keywords_found.length > 0) return 'high';
     }
 
-    async loadData() {
-        try {
-            const response = await fetch('data.json');
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            this.data = await response.json();
-            console.log('✅ Dashboard data loaded successfully');
-        } catch (error) {
-            console.error('Error loading data:', error);
-            this.showError(`Failed to load data: ${error.message}`);
-        }
+    // Check labels for severity keywords
+    if (issue.labels) {
+      const labelsStr = issue.labels.join(' ').toLowerCase();
+      if (labelsStr.includes('critical') || labelsStr.includes('cve')) return 'critical';
+      if (labelsStr.includes('high') || labelsStr.includes('vulnerability')) return 'high';
+      if (labelsStr.includes('medium')) return 'medium';
     }
 
-    renderDashboard() {
-        if (!this.data) return;
+    // Check title for severity keywords
+    const title = (issue.title || '').toLowerCase();
+    if (title.includes('critical') || title.includes('cve')) return 'critical';
+    if (title.includes('vulnerability') || title.includes('exploit')) return 'high';
 
-        this.renderOverviewTab();
-        this.renderRepositoriesTab();
-        this.renderIssuesTab();
-        this.renderLabelsTab();
+    return 'medium'; // Default to medium
+  }
+
+  // ===== HELPER: FORMAT DATE =====
+  formatDate(dateString) {
+    if (!dateString) return 'Unknown';
+
+    try {
+      const date = new Date(dateString);
+      const now = new Date();
+      const diff = now - date;
+
+      // Less than a minute
+      if (diff < 60000) return 'just now';
+
+      // Less than an hour
+      if (diff < 3600000) {
+        const minutes = Math.floor(diff / 60000);
+        return `${minutes}m ago`;
+      }
+
+      // Less than a day
+      if (diff < 86400000) {
+        const hours = Math.floor(diff / 3600000);
+        return `${hours}h ago`;
+      }
+
+      // Less than a week
+      if (diff < 604800000) {
+        const days = Math.floor(diff / 86400000);
+        return `${days}d ago`;
+      }
+
+      // Less than a month
+      if (diff < 2592000000) {
+        const weeks = Math.floor(diff / 604800000);
+        return `${weeks}w ago`;
+      }
+
+      // Default: show date
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch (e) {
+      return 'Unknown';
     }
+  }
 
-    renderOverviewTab() {
-        const summary = this.data.summary;
+  // ===== HELPER: ESCAPE HTML =====
+  escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
 
-        // Update metrics
-        document.getElementById('lastUpdated').textContent = this.formatDate(this.data.generated_at);
-        document.getElementById('totalRepos').textContent = summary.total_repos_tracked.toLocaleString();
-        document.getElementById('totalIssues').textContent = summary.total_security_issues.toLocaleString();
-        document.getElementById('openIssues').textContent = (summary.issues_by_state.open || 0).toLocaleString();
-        document.getElementById('closedIssues').textContent = (summary.issues_by_state.closed || 0).toLocaleString();
+  // ===== HELPER: SHOW ERROR =====
+  showError(message) {
+    const main = document.querySelector('.main');
+    const error = document.createElement('div');
+    error.className = 'error-message';
+    error.textContent = message;
+    main.prepend(error);
+  }
 
-        // Render issues by type
-        const typeContainer = document.getElementById('issuesByType');
-        typeContainer.innerHTML = '';
-
-        for (const [type, count] of Object.entries(summary.issues_by_type)) {
-            const card = document.createElement('div');
-            card.className = 'type-card';
-            card.innerHTML = `
-                <div class="type-card-label">${type}</div>
-                <div class="type-card-value">${count}</div>
-            `;
-            typeContainer.appendChild(card);
-        }
-
-        // Render top issues by engagement
-        const engagementContainer = document.getElementById('topEngagement');
-        engagementContainer.innerHTML = '';
-
-        if (this.data.top_issues_by_engagement && this.data.top_issues_by_engagement.length > 0) {
-            this.data.top_issues_by_engagement.slice(0, 10).forEach(issue => {
-                const card = this.createIssueCard(issue);
-                engagementContainer.appendChild(card);
-            });
-        } else {
-            engagementContainer.innerHTML = '<div class="empty">No security issues found yet.</div>';
-        }
-    }
-
-    renderRepositoriesTab() {
-        const container = document.getElementById('repositoriesList');
-        container.innerHTML = '';
-
-        if (this.data.top_repos && this.data.top_repos.length > 0) {
-            this.data.top_repos.forEach(repo => {
-                const card = document.createElement('div');
-                card.className = 'repo-card';
-                card.innerHTML = `
-                    <div class="repo-name">${repo.repo}</div>
-                    <div class="repo-stat">
-                        <span class="repo-stat-label">Security Issues</span>
-                        <span class="repo-stat-value">${repo.issue_count}</span>
-                    </div>
-                    ${repo.issues && repo.issues.length > 0 ? `
-                        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border);">
-                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Recent Issues:</div>
-                            ${repo.issues.slice(0, 3).map(issue => `
-                                <div style="font-size: 11px; margin: 2px 0;">
-                                    <a href="${issue.url}" target="_blank" style="word-break: break-word;">#${issue.number} ${issue.title.substring(0, 30)}...</a>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                `;
-                container.appendChild(card);
-            });
-        } else {
-            container.innerHTML = '<div class="empty">No repositories data available.</div>';
-        }
-    }
-
-    renderIssuesTab() {
-        const container = document.getElementById('allIssues');
-        container.innerHTML = '';
-
-        if (this.data.top_issues_by_engagement && this.data.top_issues_by_engagement.length > 0) {
-            this.data.top_issues_by_engagement.forEach(issue => {
-                const card = this.createIssueCard(issue);
-                container.appendChild(card);
-            });
-        } else {
-            container.innerHTML = '<div class="empty">No security issues found.</div>';
-        }
-    }
-
-    renderLabelsTab() {
-        const container = document.getElementById('labelsList');
-        container.innerHTML = '';
-
-        if (this.data.labels_distribution && this.data.labels_distribution.length > 0) {
-            this.data.labels_distribution.forEach(([label, count]) => {
-                const card = document.createElement('div');
-                card.className = 'label-card';
-                card.innerHTML = `
-                    <span class="label-name">${this.escapeHtml(label)}</span>
-                    <span class="label-count">${count}</span>
-                `;
-                container.appendChild(card);
-            });
-        } else {
-            container.innerHTML = '<div class="empty">No labels data available.</div>';
-        }
-    }
-
-    createIssueCard(issue) {
-        const card = document.createElement('div');
-        const isCritical = issue.labels && (
-            issue.labels.some(l => l.toLowerCase().includes('critical')) ||
-            issue.signals?.has_vulnerability_label
-        );
-
-        card.className = `issue-card ${isCritical ? 'critical' : ''}`;
-
-        const badges = [];
-        if (issue.type) badges.push(issue.type);
-        if (issue.state === 'open') badges.push('OPEN');
-        else badges.push('CLOSED');
-
-        const engagementStr = `${issue.comments || 0} comments, ${issue.reactions || 0} reactions`;
-
-        card.innerHTML = `
-            <div class="issue-header">
-                <div class="issue-title">
-                    <a href="${issue.url}" target="_blank">${this.escapeHtml(issue.title)}</a>
-                </div>
-                <div class="issue-badges">
-                    ${badges.map(b => `<span class="badge ${b.toLowerCase()}">${b}</span>`).join('')}
-                </div>
-            </div>
-            <div class="issue-meta">
-                <div class="meta-item">
-                    <span class="meta-label">Repo:</span>
-                    <span>${this.escapeHtml(issue.repo)}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">#${issue.number}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Engagement:</span>
-                    <span>${engagementStr}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Updated:</span>
-                    <span>${this.formatDate(issue.updated_at)}</span>
-                </div>
-            </div>
-        `;
-
-        return card;
-    }
-
-    formatDate(isoString) {
-        if (!isoString) return '—';
-        try {
-            const date = new Date(isoString);
-            const now = new Date();
-            const diffMs = now - date;
-            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-            if (diffDays === 0) {
-                return 'today';
-            } else if (diffDays === 1) {
-                return 'yesterday';
-            } else if (diffDays < 7) {
-                return `${diffDays} days ago`;
-            } else if (diffDays < 30) {
-                const weeks = Math.floor(diffDays / 7);
-                return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-            } else {
-                return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-            }
-        } catch {
-            return isoString;
-        }
-    }
-
-    escapeHtml(text) {
-        const map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-        return text.replace(/[&<>"']/g, m => map[m]);
-    }
-
-    showError(message) {
-        const main = document.querySelector('.main');
-        main.innerHTML = `<div class="error">⚠️ ${message}</div>`;
-    }
+  // ===== LABEL FILTERING =====
+  filterByLabel(label) {
+    this.filteredByLabel = label;
+    this.renderIssuesTab();
+    this.renderPullRequestsTab();
+    this.switchTab('issues');
+  }
 }
 
-// Initialize dashboard when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    new SecurityTracker();
-});
+// Initialize on page load
+const tracker = new SecurityTracker();
